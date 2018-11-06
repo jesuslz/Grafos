@@ -1,0 +1,256 @@
+\documentclass[autocontact]{gaceta}
+\usepackage[utf8]{inputenc}
+
+%---------------------
+%-----librerias para los grafos
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\definecolor {processblue}{cmyk}{0.96,0,0,0}
+%---------------------
+% Esto ya lo carga el estilo de La Gaceta:
+\usepackage{amsmath, amsthm, amssymb}
+%\usepackage{url} % <-- Para p\'aginas web o similar: \url{...}
+%\usepackage{graphicx}
+%---------------------
+
+%---------------------
+% Carga esto para gr\'aficos si lo necesitas:
+% \usepackage{wrapfig}
+%---------------------
+
+%---------------------
+% <<< ESTO SE AJUSTAR\'A AL EDITAR CADA N\'UMERO DE LA GACETA >>>
+\setcounter{page}{1} 
+\journame{UAdeC-FCFM}
+\yearofpublication{2018}
+\volume{1}
+\issuenumber{0}
+%---------------------
+
+%---------------------
+% Deja esto as\'{\i}:
+\belongstopart{Art\'{\i}culos} 
+%\belongstopart{Secciones} 
+%\belongstopart{Noticias de la Sociedad} 
+%\belongstopart{Actualidad} 
+%\nopart
+%---------------------
+
+%---------------------
+\title{Universidad Autónoma de Coahuila \\ Facultad de Ciencias Físico Matemáticas
+\\ Investigación de operaciones \\ Teoría de Grafos \\ Tarea 2}
+\author{Jesús López Zavala} % o \author{Un Autor y Otro Autor}, etc.
+% Opcional:
+\shorttitle{Ejemplo de c\'omo escribir un art\'{\i}culo para La Gaceta}
+%---------------------
+
+%---------------------
+\contact{Un autor, Dpto. de Matem\'aticas, Universidad de \dots}
+{autor@uni.es}{http://www.uni.es/personales/autor.html}
+%% SINTAXIS (\'usense tantos de estos como autores haya):
+%\contact{nombre y direcci\'on autor 1}{email autor 1}{p\'agina web autor 1}
+%\contact{nombre y direcci\'on autor 2}{email autor 2}{p\'agina web autor 2}
+% (IMPORTANTE: se puede dejar vac\'{\i}o lo que se quiera)
+%---------------------
+
+%---------------------------
+\begin{document}
+\maketitle
+%---------------------
+
+\section{Problema 1}
+    Encontrar el camino de longitud máxima que une los nodos $x_{1}$ y $x_{6}$.
+    
+
+    \tikzstyle{place}=[circle,draw=blue!50,fill=blue!20,thick]
+    \tikzstyle{transition}=[rectangle,draw=black!50,fill=black!20,thick]
+    \tikzstyle{every label}= [blue]
+    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
+        
+        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+        \node[state] (n1) at (-5, 0) {$x_1$};
+        \node[state] (n2) at (-2.5, 2.5) {$x_2$};
+        \node[state] (n3) at (-2.5, -2.5) {$x_3$};
+        \node[state] (n4) at (2.5, -2.5) {$x_4$};
+        \node[state] (n5) at (2.5, 2.5) {$x_5$};
+        \node[state] (n6) at (5, 0) {$x_6$};
+        
+
+        \path (n1) edge [bend right = -25] node[above = 0.15 cm] {$1$} (n2);
+        \path (n1) edge [bend right = 25] node[below = 0.0 cm] {$2$} (n3);
+        \path (n2) edge  node[above = 0.15 cm] {$31$} (n5);
+        \path (n3) edge  node[above = 0.15 cm] {$12$} (n4);
+        \path (n5) edge  [bend right = -25] node[above = 0.15 cm] {$4$} (n6);
+        \path (n4) edge  [bend right = 25] node[below = 0.15 cm] {$2$} (n6);
+        \path (n1) edge  node[above = 0.15 cm] {$30$} (n5);
+        \path (n2) edge  [bend right = 25] node[above = 0.15 cm] {$15$} (n4);
+        %si queremos un loop
+        %\path (A) edge [loop left] node[left] {$1/4$} (A);
+    \end{tikzpicture}
+
+    Para resolverlo hay que aplicar el algoritmo de Ford, a continuación se muestran las
+    marcas sobre cada nodo:
+
+    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
+        
+        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+        \node[state] (n1) at (-5, 0) [label=left:$ (-{,}0) $] {$x_1$};
+        \node[state] (n2) at (-2.5, 2.5) {$x_2$};
+        \node[state] (n3) at (-2.5, -2.5) {$x_3$};
+        \node[state] (n4) at (2.5, -2.5) {$x_4$};
+        \node[state] (n5) at (2.5, 2.5) {$x_5$};
+        \node[state] (n6) at (5, 0) {$x_6$};
+        
+
+        \path (n1) edge [bend right = -25] node[above = 0.15 cm] {$1$} (n2);
+        \path (n1) edge [bend right = 25] node[below = 0.0 cm] {$2$} (n3);
+        \path (n2) edge  node[above = 0.15 cm] {$31$} (n5);
+        \path (n3) edge  node[above = 0.15 cm] {$12$} (n4);
+        \path (n5) edge  [bend right = -25] node[above = 0.15 cm] {$4$} (n6);
+        \path (n4) edge  [bend right = 25] node[below = 0.15 cm] {$2$} (n6);
+        \path (n1) edge  node[above = 0.15 cm] {$30$} (n5);
+        \path (n2) edge  [bend right = 25] node[above = 0.15 cm] {$15$} (n4);
+        %si queremos un loop
+        %\path (A) edge [loop left] node[left] {$1/4$} (A);
+    \end{tikzpicture}
+
+
+
+\section{Problema 2}
+¿Podemos conocer la longitud del camino extremal sin conocer explícitamente los arcos que la 
+componen?. ¿Se pueden marcar más de una vez los vértices?
+
+\subsection{Respuesta}
+
+\section{Problema 3}
+Formule el algoritmo de Ford para hallar caminos mínimos.
+
+\section{Problema 4}
+En el grafo del ejercicio 1, halle el camino de longitud mínima.
+
+\section{Problema 5}
+En el grafo siguiente halle:
+    \begin{enumerate}
+        \item Encontrar el camino de longitud máxima que une los nodos $\alpha$ y $\beta$.
+        \item Encontrar el camino de longitud mínima que une los nodos $\alpha$ y $\beta$.
+        \item El recorrido que acumule la menor cantidad de arcos, de $\alpha$ a $\beta$.
+    \end{enumerate}
+
+    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
+        
+        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+        \node[state] (a) at (-5, 0) {$\alpha$};
+        \node[state] (A) at (-2.5, 2.5) {A};
+        \node[state] (B) at (-2.0, 0) {B};
+        \node[state] (C) at (-1.5, -2.5) {C};
+        \node[state] (E) at (1.0, 1.5) {E};
+        \node[state] (H) at (1.5, 0) {H};
+        \node[state] (F) at (1.3, -1.7) {F};
+        \node[state] (D) at (2.5, 2.8) {D};
+        \node[state] (b) at (4.5, 0) {$\beta$};
+        \node[state] (G) at (5.0, 1.5) {G};
+        
+
+        \path (a) edge [bend right = -25] node[above = 0.15 cm] {$5$} (A);
+        \path (a) edge node[below = 0.0 cm] {$9$} (B);
+        \path (a) edge [bend right = 25] node[above = 0.15 cm] {$4$} (C);
+        \path (A) edge [bend right = -25] node[above = 0.15 cm] {$4$} (D);
+        \path (A) edge node[above = 0.15 cm] {$6$} (E);
+        \path (B) edge  [bend right = -25] node[above = 0.15 cm] {$2$} (D);
+        \path (B) edge  node[below = 0.0 cm] {$3$} (H);
+        \path (B) edge  [bend right = 25] node[above = 0.0 cm] {$5$} (F);
+        \path (C) edge [bend right = -15] node[below = 0.0 cm] {$5$} (E);
+        \path (C) edge [bend right = 25] node[below = 0.0 cm] {$2$} (H);
+        \path (F) edge [bend right = 25] node[below right = 0.0 cm] {$2$} (H);
+        \path (H) edge node[above = 0.15 cm] {$3$} (b);
+        \path (G) edge [bend right = -25] node[below right = 0.15 cm] {$2$} (b);
+        \path (D) edge [bend right = -25] node[above right = 0.15 cm] {$1$} (G);
+        \path (E) edge [bend right = -15] node[above = 0.15 cm] {$2$} (G);
+        \path (E) edge [bend right = -15] node[above = 0.15 cm] {$6$} (b);
+
+
+        %si queremos un loop
+        %\path (A) edge [loop left] node[left] {$1/4$} (A);
+    \end{tikzpicture}
+
+Escribir direcciones de p\'aginas web siempre es complicado es un papel, pues pueden no caber bien en las l\'{\i}neas de texto al paginar. Adem\'as, hay caracteres como el de tanto por ciento o el gui\'on bajo que dan problemas, ya que \LaTeX\ los interpreta como caracteres de control suyos.
+
+Para sortear estas dificultades, existe el comando <<url>>. As\'{\i}, si en tu art\'{\i}culo citas alguna p\'agina web, hazlo como
+\url{http://www.sitio.es/facultad/departamento/grupo/~pepe.html}
+y todos los problemas se resuelven solos. Haz lo mismo con las direcciones de correo electr\'onico: \url{jose_ramirez@universidad.es} funciona la mar de bien.
+
+
+\subsection{F\'ormulas de varias l\'{\i}neas}
+
+Para escribir f\'ormulas que ocupan varias l\'{\i}neas, \LaTeX\ tiene el entorno <<eqnarray>>. Pero no es muy vers\'atil, y los resultados que proporciona no son est\'eticamente brillantes. El paquete \textit{amsmath} (que el estilo de \textit{La Gaceta} siempre carga) dispone de muchos otros entornos, como <<align>>, <<multline>>, <<gather>>, <<aligned>>, <<split>>,\dots, algunos de ellos tambi\'en con forma estrellada (como <<align*>>). Las versiones con estrellas no ponen n\'umeros a las ecuaciones.
+
+As\'{\i} mismo, los comandos para escribir matrices que proporciona \textit{amsmath} son mucho m\'as c\'omodos de usar que los que incluye \LaTeX\ a secas.
+
+\subsection{Escribir la bibliograf\'{\i}a}
+
+Habitualmente, para adaptar un art\'{\i}culo al estilo de una revista, lo que m\'as trabajo cuesta es adaptar el formato de la bibliograf\'{\i}a. 
+Por favor, intenta seguir el que aqu\'{\i} estamos usando. Tienes un ejemplo de c\'omo citar un art\'{\i}culo de una revista (\cite{Kn}), un libro (\cite{latex-imprenta} o \cite{latex-companion}), y un art\'{\i}culo en las actas de un congreso (\cite{Tao-ICM}). En este \'ultimo caso, o con cap\'{\i}tulos de libros, no pretendemos seguir un estilo estricto, pues la casu\'{\i}stica es demasiado grande. Si lo que citas est\'a en alguna p\'agina web, puedes hacerlo como en \cite{Be-spanish, Be-orto, Do, MeSl} (de paso, observa que quiz\'as alguna de esas referencias te puede resultar \'util para redactar documentos en~\LaTeX).
+
+
+Te recordamos que los nombres de las revistas no se abrevian de cualquier manera, sino que hay formas est\'andar de hacerlo. Lo m\'as c\'omodo es seguir lo que hace la AMS,\footnote{Aunque a \textit{La Gaceta de la RSME} no la nombre como solemos hacerlo nosotros.} que puedes encontrar en \url{http://www.ams.org/mathweb/mi-annser.html}
+o \url{http://www.ams.org/msnhtml/serials.pdf}. Por supuesto, es lo que se usa en MathSciNet; te puede resultar c\'omodo copiar y pegar desde all\'{\i} si tienes acceso.
+
+\begin{thebibliography}{9}
+
+\bibitem{Be-spanish}
+\textsc{J. Bezos}, 
+Estilo spanish para el sistema babel,
+\url{http://www.ctan.org/tex-archive/language/spanish/babel/spanish.pdf}
+
+\bibitem{Be-orto}
+\textsc{J. Bezos}, 
+Ortotipograf\'{\i}a y notaciones matem\'aticas,
+\url{http://www.texytipografia.com/archive/ortomatem.pdf}
+
+\bibitem{latex-imprenta}
+\textsc{B. Cascales, P. Lucas, J. M. Mira, A. Pallar\'es y S. S\'anchez-Pedre\~no}, 
+\textit{LaTeX, una imprenta en tus manos}, 
+Aula Documental de Investigaci\'on, Madrid, 2000.
+
+\bibitem{Do}
+\textsc{M. Downes},
+Short math guide for \LaTeX,
+\url{ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf}
+
+\bibitem{Kn}
+\textsc{D. E. Knuth}, 
+Mathematical typography, 
+\textit{Bull. Amer. Math. Soc. (N.S.)} 
+\textbf{1} (1979), 337--372. 
+
+\bibitem{MeSl}
+\textsc{A. Mertz y W. Slough},
+Graphics with PGF and Ti\textit{k}Z,
+\textit{The Prac\TeX\ Journal} 2007, n.\textsuperscript{o}~1.
+Disponible en
+\url{http://www.tug.org/pracjourn/2007-1/mertz/}
+
+\bibitem{latex-companion}
+\textsc{F. Mittelbach, M. Goossens, J. Braams, D. Carlisle y C. Rowley}, 
+\textit{The \LaTeX\ Companion}, 
+2.\textsuperscript{a} ed., 
+Addison-Wesley, 2004. 
+
+\bibitem{Tao-ICM} 
+\textsc{T. Tao}, 
+The dichotomy between structure and randomness, arithmetic progressions, and the primes, 
+\textit{International Congress of Mathematicians} (Madrid, 2006), 
+Vol. I, 581--608, \textit{Eur. Math. Soc.}, Zurich, 2007.
+
+\end{thebibliography}
+
+%---------------------------
+\end{document}
+%---------------------------
+
