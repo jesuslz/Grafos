@@ -1,0 +1,38 @@
+    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+        state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+        draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
+    
+    %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+    \node[state] (a) at (-5, 0) [label = left: $ (- {,} 0) $] {$\alpha$};
+    \node[state] (A) at (-2.5, 2.5) [label = above: $ (\alpha {,} 5) $] {A};
+    \node[state] (B) at (-2.0, 0) [label = above left: $ (\alpha {,} 9) $] {B};
+    \node[state] (C) at (-1.5, -2.5) [label = above left: $ (\alpha {,} 4) $] {C};
+    \node[state] (E) at (1.0, 1.5) [label = above: $ (A {,} 11) $] {E};
+    \node[state] (H) at (1.5, 0) [label = above: $ (F {,} 16) $] {H};
+    \node[state] (F) at (1.3, -1.7) [label = below: $ (B {,} 14) $] {F};
+    \node[state] (D) at (2.5, 2.8) [label = above: $ (B {,} 11) $] {D};
+    \node[state] (b) at (4.5, 0) [label = above: $ (H {,} 19) $] {$\beta$};
+    \node[state] (G) at (5.0, 1.5) [label = above: $ (E {,} 13) $] {G};
+    
+
+    \path (a) edge [bend right = -25] node[above = 0.15 cm] {$5$} (A);
+    \path (a)[camino] edge node[below = 0.0 cm] {$9$} (B);
+    \path (a) edge [bend right = 25] node[above = 0.15 cm] {$4$} (C);
+    \path (A) edge [bend right = -25] node[above = 0.15 cm] {$4$} (D);
+    \path (A) edge node[above = 0.15 cm] {$6$} (E);
+    \path (B) edge  [bend right = -25] node[above = 0.15 cm] {$2$} (D);
+    \path (B) edge  node[below = 0.0 cm] {$3$} (H);
+    \path (B)[camino] edge  [bend right = 25] node[above = 0.0 cm] {$5$} (F);
+    \path (C) edge [bend right = -15] node[below = 0.0 cm] {$5$} (E);
+    \path (C) edge [bend right = 25] node[below = 0.0 cm] {$2$} (H);
+    \path (F)[camino] edge [bend right = 25] node[below right = 0.0 cm] {$2$} (H);
+    \path (H)[camino] edge node[above = 0.15 cm] {$3$} (b);
+    \path (G) edge [bend right = -25] node[below right = 0.15 cm] {$2$} (b);
+    \path (D) edge [bend right = -25] node[above right = 0.15 cm] {$1$} (G);
+    \path (E) edge [bend right = -15] node[above = 0.15 cm] {$2$} (G);
+    \path (E) edge [bend right = -15] node[above = 0.15 cm] {$6$} (b);
+
+
+    %si queremos un loop
+    %\path (A) edge [loop left] node[left] {$1/4$} (A);
+\end{tikzpicture}

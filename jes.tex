@@ -67,58 +67,13 @@
     \tikzstyle{place}=[circle,draw=blue!50,fill=blue!20,thick]
     \tikzstyle{transition}=[rectangle,draw=black!50,fill=black!20,thick]
     \tikzstyle{every label}= [blue]
-    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
-            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
-            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
-        
-        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
-        \node[state] (n1) at (-5, 0) {$x_1$};
-        \node[state] (n2) at (-2.5, 2.5) {$x_2$};
-        \node[state] (n3) at (-2.5, -2.5) {$x_3$};
-        \node[state] (n4) at (2.5, -2.5) {$x_4$};
-        \node[state] (n5) at (2.5, 2.5) {$x_5$};
-        \node[state] (n6) at (5, 0) {$x_6$};
-        
-
-        \path (n1) edge [bend right = -25] node[above = 0.15 cm] {$1$} (n2);
-        \path (n1) edge [bend right = 25] node[below = 0.0 cm] {$2$} (n3);
-        \path (n2) edge  node[above = 0.15 cm] {$31$} (n5);
-        \path (n3) edge  node[above = 0.15 cm] {$12$} (n4);
-        \path (n5) edge  [bend right = -25] node[above = 0.15 cm] {$4$} (n6);
-        \path (n4) edge  [bend right = 25] node[below = 0.15 cm] {$2$} (n6);
-        \path (n1) edge  node[above = 0.15 cm] {$30$} (n5);
-        \path (n2) edge  [bend right = 25] node[above = 0.15 cm] {$15$} (n4);
-        %si queremos un loop
-        %\path (A) edge [loop left] node[left] {$1/4$} (A);
-    \end{tikzpicture}
+    
+    \input{graphs/graphProblem1.tex}
 
     Para resolverlo hay que aplicar el algoritmo de Ford, a continuación se muestran las
     marcas sobre cada nodo:
 
-    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
-            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
-            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
-        
-        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
-        \node[state] (n1) at (-5, 0) [label=left:$ (-{,}0) $] {$x_1$};
-        \node[state] (n2) at (-2.5, 2.5) [label = above: $ (x_1 {,} 1) $] {$x_2$};
-        \node[state] (n3) at (-2.5, -2.5) [label = above: $ (x_1 {,} 2) $] {$x_3$};
-        \node[state] (n4) at (2.5, -2.5) [label = above: $ (x_2 {,} 16) $] {$x_4$};
-        \node[state] (n5) at (2.5, 2.5) [label = above: $ (x_2 {,} 32) $] {$x_5$};
-        \node[state] (n6) at (5, 0) [label = right: $ (x_5 {,} 36) $] {$x_6$};
-        
-
-        \path (n1)[camino] edge [bend right = -25] node[above = 0.15 cm] {$1$} (n2);
-        \path (n1) edge [bend right = 25] node[below = 0.0 cm] {$2$} (n3);
-        \path (n2)[camino] edge  node[above = 0.15 cm] {$31$} (n5);
-        \path (n3) edge  node[above = 0.15 cm] {$12$} (n4);
-        \path (n5)[camino] edge  [bend right = -25] node[above = 0.15 cm] {$4$} (n6);
-        \path (n4) edge  [bend right = 25] node[below = 0.15 cm] {$2$} (n6);
-        \path (n1) edge  node[above = 0.15 cm] {$30$} (n5);
-        \path (n2) edge  [bend right = 25] node[above = 0.15 cm] {$15$} (n4);
-        %si queremos un loop
-        %\path (A) edge [loop left] node[left] {$1/4$} (A);
-    \end{tikzpicture}
+    \input{graphs/graphProblem1-2.tex}
 
     Para encontrar el camino óptimo realizamos la siguiente operación:
     $$ e(j) - e(i) = c(ij)$$
@@ -175,38 +130,11 @@
     \\A continuación se muestran las marcas obtenidas al aplicar el algoritmo de Ford 
     descrito anteriormente:
     
-    
-    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
-        state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
-        draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
-    
-        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
-        \node[state] (n1) at (-5, 0) [label=left:$ (-{,}0) $] {$x_1$};
-        \node[state] (n2) at (-2.5, 2.5) [label = above: $ (x_1 {,} 1) $] {$x_2$};
-        \node[state] (n3) at (-2.5, -2.5) [label = above: $ (x_1 {,} 2) $] {$x_3$};
-        \node[state] (n4) at (2.5, -2.5) [label = above: $ (x_3 {,} 14) $] {$x_4$};
-        \node[state] (n5) at (2.5, 2.5) [label = above: $ (x_1 {,} 30) $] {$x_5$};
-        \node[state] (n6) at (5, 0) [label = right: $ (x_4 {,} 16) $] {$x_6$};
-        
-
-        \path (n1) edge [bend right = -25] node[above = 0.15 cm] {$1$} (n2);
-        \path (n1)[camino] edge [bend right = 25] node[below = 0.0 cm] {$2$} (n3);
-        \path (n2) edge  node[above = 0.15 cm] {$31$} (n5);
-        \path (n3)[camino] edge  node[above = 0.15 cm] {$12$} (n4);
-        \path (n5) edge  [bend right = -25] node[above = 0.15 cm] {$4$} (n6);
-        \path (n4)[camino] edge  [bend right = 25] node[below = 0.15 cm] {$2$} (n6);
-        \path (n1) edge  node[above = 0.15 cm] {$30$} (n5);
-        \path (n2) edge  [bend right = 25] node[above = 0.15 cm] {$15$} (n4);
-        %si queremos un loop
-        %\path (A) edge [loop left] node[left] {$1/4$} (A);
-    \end{tikzpicture}
+    \input{graphs/graphProblem4.tex}
 
     Aplicando el paso $4$ descrito en el problema anterior obtenemos el siguente conjunto de arcos:
     $$ U = \{ (x_1, x_3), (x_3, x_4), (x_4, x_6)\}, $$
     siendo éste el camino de longitud mínima.
-
-
-
 
 
 
@@ -220,88 +148,15 @@ En el grafo siguiente halle:
         \item El recorrido que acumule la menor cantidad de arcos, de $\alpha$ a $\beta$.
     \end{enumerate}
 
-    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
-            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
-            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
-        
-        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
-        \node[state] (a) at (-5, 0) {$\alpha$};
-        \node[state] (A) at (-2.5, 2.5) {A};
-        \node[state] (B) at (-2.0, 0) {B};
-        \node[state] (C) at (-1.5, -2.5) {C};
-        \node[state] (E) at (1.0, 1.5) {E};
-        \node[state] (H) at (1.5, 0) {H};
-        \node[state] (F) at (1.3, -1.7) {F};
-        \node[state] (D) at (2.5, 2.8) {D};
-        \node[state] (b) at (4.5, 0) {$\beta$};
-        \node[state] (G) at (5.0, 1.5) {G};
-        
-
-        \path (a) edge [bend right = -25] node[above = 0.15 cm] {$5$} (A);
-        \path (a) edge node[below = 0.0 cm] {$9$} (B);
-        \path (a) edge [bend right = 25] node[above = 0.15 cm] {$4$} (C);
-        \path (A) edge [bend right = -25] node[above = 0.15 cm] {$4$} (D);
-        \path (A) edge node[above = 0.15 cm] {$6$} (E);
-        \path (B) edge  [bend right = -25] node[above = 0.15 cm] {$2$} (D);
-        \path (B) edge  node[below = 0.0 cm] {$3$} (H);
-        \path (B) edge  [bend right = 25] node[above = 0.0 cm] {$5$} (F);
-        \path (C) edge [bend right = -15] node[below = 0.0 cm] {$5$} (E);
-        \path (C) edge [bend right = 25] node[below = 0.0 cm] {$2$} (H);
-        \path (F) edge [bend right = 25] node[below right = 0.0 cm] {$2$} (H);
-        \path (H) edge node[above = 0.15 cm] {$3$} (b);
-        \path (G) edge [bend right = -25] node[below right = 0.15 cm] {$2$} (b);
-        \path (D) edge [bend right = -25] node[above right = 0.15 cm] {$1$} (G);
-        \path (E) edge [bend right = -15] node[above = 0.15 cm] {$2$} (G);
-        \path (E) edge [bend right = -15] node[above = 0.15 cm] {$6$} (b);
-
-
-        %si queremos un loop
-        %\path (A) edge [loop left] node[left] {$1/4$} (A);
-    \end{tikzpicture}
+    
+    \input{graphs/graphProblem5-1.tex}
 
     1. Aplicando el algoritmo de Ford se obtiene que el conjunto:
     $$ U = \{ (\alpha, B), (B, F), (F, H), (H, \beta) \}, $$
     es el camino de longitud máxima. A continuación se muestra en la figura a este conjunto de arcos 
     coloreados en tono azul:
 
-    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
-        state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
-        draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
-    
-    %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
-    \node[state] (a) at (-5, 0) [label = left: $ (- {,} 0) $] {$\alpha$};
-    \node[state] (A) at (-2.5, 2.5) [label = above: $ (\alpha {,} 5) $] {A};
-    \node[state] (B) at (-2.0, 0) [label = above left: $ (\alpha {,} 9) $] {B};
-    \node[state] (C) at (-1.5, -2.5) [label = above left: $ (\alpha {,} 4) $] {C};
-    \node[state] (E) at (1.0, 1.5) [label = above: $ (A {,} 11) $] {E};
-    \node[state] (H) at (1.5, 0) [label = above: $ (F {,} 16) $] {H};
-    \node[state] (F) at (1.3, -1.7) [label = below: $ (B {,} 14) $] {F};
-    \node[state] (D) at (2.5, 2.8) [label = above: $ (B {,} 11) $] {D};
-    \node[state] (b) at (4.5, 0) [label = above: $ (H {,} 19) $] {$\beta$};
-    \node[state] (G) at (5.0, 1.5) [label = above: $ (E {,} 13) $] {G};
-    
-
-    \path (a) edge [bend right = -25] node[above = 0.15 cm] {$5$} (A);
-    \path (a)[camino] edge node[below = 0.0 cm] {$9$} (B);
-    \path (a) edge [bend right = 25] node[above = 0.15 cm] {$4$} (C);
-    \path (A) edge [bend right = -25] node[above = 0.15 cm] {$4$} (D);
-    \path (A) edge node[above = 0.15 cm] {$6$} (E);
-    \path (B) edge  [bend right = -25] node[above = 0.15 cm] {$2$} (D);
-    \path (B) edge  node[below = 0.0 cm] {$3$} (H);
-    \path (B)[camino] edge  [bend right = 25] node[above = 0.0 cm] {$5$} (F);
-    \path (C) edge [bend right = -15] node[below = 0.0 cm] {$5$} (E);
-    \path (C) edge [bend right = 25] node[below = 0.0 cm] {$2$} (H);
-    \path (F)[camino] edge [bend right = 25] node[below right = 0.0 cm] {$2$} (H);
-    \path (H)[camino] edge node[above = 0.15 cm] {$3$} (b);
-    \path (G) edge [bend right = -25] node[below right = 0.15 cm] {$2$} (b);
-    \path (D) edge [bend right = -25] node[above right = 0.15 cm] {$1$} (G);
-    \path (E) edge [bend right = -15] node[above = 0.15 cm] {$2$} (G);
-    \path (E) edge [bend right = -15] node[above = 0.15 cm] {$6$} (b);
-
-
-    %si queremos un loop
-    %\path (A) edge [loop left] node[left] {$1/4$} (A);
-\end{tikzpicture}
+    \input{graphs/graphProblem5-2.tex}
 
 
     2. El algoritmo de Ford para encontrar caminos mínimos conduce a que el siguiente conjunto:
@@ -311,148 +166,23 @@ En el grafo siguiente halle:
     al conjunto $U$. Dichos arcos estan coloreados en azul y sus respectivas longitudes se muestran en color
     rojo:
 
-    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
-        state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
-        draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
-    
-    %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
-    \node[state] (a) at (-5, 0) [label = left: $ (- {,} 0) $] {$\alpha$};
-    \node[state] (A) at (-2.5, 2.5) [label = above: $ (\alpha {,} 5) $] {A};
-    \node[state] (B) at (-2.0, 0) [label = above left: $ (\alpha {,} 9) $] {B};
-    \node[state] (C) at (-1.5, -2.5) [label = above left: $ (\alpha {,} 4) $] {C};
-    \node[state] (E) at (1.0, 1.5) [label = above: $ (C {,} 9) $] {E};
-    \node[state] (H) at (1.5, 0) [label = above: $ (C {,} 6) $] {H};
-    \node[state] (F) at (1.3, -1.7) [label = below: $ (B {,} 14) $] {F};
-    \node[state] (D) at (2.5, 2.8) [label = above: $ (A {,} 9) $] {D};
-    \node[state] (b) at (4.5, 0) [label = above: $ (H {,} 9) $] {$\beta$};
-    \node[state] (G) at (5.0, 1.5) [label = above: $ (D {,} 10) $] {G};
-    
+    \input{graphs/graphProblem5-3.tex}
 
-    \path (a) edge [bend right = -25] node[above = 0.15 cm] {$5$} (A);
-    \path (a) edge node[below = 0.0 cm] {$9$} (B);
-    \path (a)[camino] edge [bend right = 25] node[above = 0.15 cm] {$4$} (C);
-    \path (A) edge [bend right = -25] node[above = 0.15 cm] {$4$} (D);
-    \path (A) edge node[above = 0.15 cm] {$6$} (E);
-    \path (B) edge  [bend right = -25] node[above = 0.15 cm] {$2$} (D);
-    \path (B) edge  node[below = 0.0 cm] {$3$} (H);
-    \path (B) edge  [bend right = 25] node[above = 0.0 cm] {$5$} (F);
-    \path (C) edge [bend right = -15] node[below = 0.0 cm] {$5$} (E);
-    \path (C)[camino] edge [bend right = 25] node[below = 0.0 cm] {$2$} (H);
-    \path (F) edge [bend right = 25] node[below right = 0.0 cm] {$2$} (H);
-    \path (H)[camino] edge node[above = 0.15 cm] {$3$} (b);
-    \path (G) edge [bend right = -25] node[below right = 0.15 cm] {$2$} (b);
-    \path (D) edge [bend right = -25] node[above right = 0.15 cm] {$1$} (G);
-    \path (E) edge [bend right = -15] node[above = 0.15 cm] {$2$} (G);
-    \path (E) edge [bend right = -15] node[above = 0.15 cm] {$6$} (b);
+    3. Para responder a esta pregunta, sustituiremos los valores predeterminados en cada 
+    arco por el valor de 1, luego aplicaremos el algoritmo de Ford para encontrar así 
+    todos los posibles conjuntos con el menor número de arcos.
+    Luego de aplicar el algoritmo, el grafo reslultante se muestra a continuación:
 
 
-    %si queremos un loop
-    %\path (A) edge [loop left] node[left] {$1/4$} (A);
-\end{tikzpicture}
-
-
-
-
-
-
-
-
+    \input{graphs/graphProblem5-4.tex}
 
 
 %%---------------------------Otros problemas----------------------------------
 %-----------------------------------------------------------------------
 \section{Problema que resolvimos en clase}
-    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
-            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
-            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
-        
-        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
-        
-        \node[state] (A) at (-5, 0) {A};
-        \node[state] (B) at (-2.5, 3.5) {B};
-        \node[state] (C) at (2.5, 3.5) {C};
-        \node[state] (D) at (5, 0) {D};
-        \node[state] (E) at (2.5, -3.5) {E};
-        \node[state] (F) at (-2.5, -3.5) {F};
-        
-        
+   \input{graphs/problemasotros.tex}
 
 
-
-        %si queremos un loop
-        %\path (A) edge [loop left] node[left] {$1/4$} (A);
-    \end{tikzpicture}
-
-Escribir direcciones de p\'aginas web siempre es complicado es un papel, pues pueden no caber bien en las l\'{\i}neas de texto al paginar. Adem\'as, hay caracteres como el de tanto por ciento o el gui\'on bajo que dan problemas, ya que \LaTeX\ los interpreta como caracteres de control suyos.
-
-Para sortear estas dificultades, existe el comando <<url>>. As\'{\i}, si en tu art\'{\i}culo citas alguna p\'agina web, hazlo como
-\url{http://www.sitio.es/facultad/departamento/grupo/~pepe.html}
-y todos los problemas se resuelven solos. Haz lo mismo con las direcciones de correo electr\'onico: \url{jose_ramirez@universidad.es} funciona la mar de bien.
-
-
-\subsection{F\'ormulas de varias l\'{\i}neas}
-
-Para escribir f\'ormulas que ocupan varias l\'{\i}neas, \LaTeX\ tiene el entorno <<eqnarray>>. Pero no es muy vers\'atil, y los resultados que proporciona no son est\'eticamente brillantes. El paquete \textit{amsmath} (que el estilo de \textit{La Gaceta} siempre carga) dispone de muchos otros entornos, como <<align>>, <<multline>>, <<gather>>, <<aligned>>, <<split>>,\dots, algunos de ellos tambi\'en con forma estrellada (como <<align*>>). Las versiones con estrellas no ponen n\'umeros a las ecuaciones.
-
-As\'{\i} mismo, los comandos para escribir matrices que proporciona \textit{amsmath} son mucho m\'as c\'omodos de usar que los que incluye \LaTeX\ a secas.
-
-\subsection{Escribir la bibliograf\'{\i}a}
-
-Habitualmente, para adaptar un art\'{\i}culo al estilo de una revista, lo que m\'as trabajo cuesta es adaptar el formato de la bibliograf\'{\i}a. 
-Por favor, intenta seguir el que aqu\'{\i} estamos usando. Tienes un ejemplo de c\'omo citar un art\'{\i}culo de una revista (\cite{Kn}), un libro (\cite{latex-imprenta} o \cite{latex-companion}), y un art\'{\i}culo en las actas de un congreso (\cite{Tao-ICM}). En este \'ultimo caso, o con cap\'{\i}tulos de libros, no pretendemos seguir un estilo estricto, pues la casu\'{\i}stica es demasiado grande. Si lo que citas est\'a en alguna p\'agina web, puedes hacerlo como en \cite{Be-spanish, Be-orto, Do, MeSl} (de paso, observa que quiz\'as alguna de esas referencias te puede resultar \'util para redactar documentos en~\LaTeX).
-
-
-Te recordamos que los nombres de las revistas no se abrevian de cualquier manera, sino que hay formas est\'andar de hacerlo. Lo m\'as c\'omodo es seguir lo que hace la AMS,\footnote{Aunque a \textit{La Gaceta de la RSME} no la nombre como solemos hacerlo nosotros.} que puedes encontrar en \url{http://www.ams.org/mathweb/mi-annser.html}
-o \url{http://www.ams.org/msnhtml/serials.pdf}. Por supuesto, es lo que se usa en MathSciNet; te puede resultar c\'omodo copiar y pegar desde all\'{\i} si tienes acceso.
-
-\begin{thebibliography}{9}
-
-\bibitem{Be-spanish}
-\textsc{J. Bezos}, 
-Estilo spanish para el sistema babel,
-\url{http://www.ctan.org/tex-archive/language/spanish/babel/spanish.pdf}
-
-\bibitem{Be-orto}
-\textsc{J. Bezos}, 
-Ortotipograf\'{\i}a y notaciones matem\'aticas,
-\url{http://www.texytipografia.com/archive/ortomatem.pdf}
-
-\bibitem{latex-imprenta}
-\textsc{B. Cascales, P. Lucas, J. M. Mira, A. Pallar\'es y S. S\'anchez-Pedre\~no}, 
-\textit{LaTeX, una imprenta en tus manos}, 
-Aula Documental de Investigaci\'on, Madrid, 2000.
-
-\bibitem{Do}
-\textsc{M. Downes},
-Short math guide for \LaTeX,
-\url{ftp://ftp.ams.org/pub/tex/doc/amsmath/short-math-guide.pdf}
-
-\bibitem{Kn}
-\textsc{D. E. Knuth}, 
-Mathematical typography, 
-\textit{Bull. Amer. Math. Soc. (N.S.)} 
-\textbf{1} (1979), 337--372. 
-
-\bibitem{MeSl}
-\textsc{A. Mertz y W. Slough},
-Graphics with PGF and Ti\textit{k}Z,
-\textit{The Prac\TeX\ Journal} 2007, n.\textsuperscript{o}~1.
-Disponible en
-\url{http://www.tug.org/pracjourn/2007-1/mertz/}
-
-\bibitem{latex-companion}
-\textsc{F. Mittelbach, M. Goossens, J. Braams, D. Carlisle y C. Rowley}, 
-\textit{The \LaTeX\ Companion}, 
-2.\textsuperscript{a} ed., 
-Addison-Wesley, 2004. 
-
-\bibitem{Tao-ICM} 
-\textsc{T. Tao}, 
-The dichotomy between structure and randomness, arithmetic progressions, and the primes, 
-\textit{International Congress of Mathematicians} (Madrid, 2006), 
-Vol. I, 581--608, \textit{Eur. Math. Soc.}, Zurich, 2007.
-
-\end{thebibliography}
 
 %---------------------------
 \end{document}

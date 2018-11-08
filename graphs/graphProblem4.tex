@@ -1,0 +1,25 @@
+   
+    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+        state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+        draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
+    
+        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+        \node[state] (n1) at (-5, 0) [label=left:$ (-{,}0) $] {$x_1$};
+        \node[state] (n2) at (-2.5, 2.5) [label = above: $ (x_1 {,} 1) $] {$x_2$};
+        \node[state] (n3) at (-2.5, -2.5) [label = above: $ (x_1 {,} 2) $] {$x_3$};
+        \node[state] (n4) at (2.5, -2.5) [label = above: $ (x_3 {,} 14) $] {$x_4$};
+        \node[state] (n5) at (2.5, 2.5) [label = above: $ (x_1 {,} 30) $] {$x_5$};
+        \node[state] (n6) at (5, 0) [label = right: $ (x_4 {,} 16) $] {$x_6$};
+        
+
+        \path (n1) edge [bend right = -25] node[above = 0.15 cm] {$1$} (n2);
+        \path (n1)[camino] edge [bend right = 25] node[below = 0.0 cm] {$2$} (n3);
+        \path (n2) edge  node[above = 0.15 cm] {$31$} (n5);
+        \path (n3)[camino] edge  node[above = 0.15 cm] {$12$} (n4);
+        \path (n5) edge  [bend right = -25] node[above = 0.15 cm] {$4$} (n6);
+        \path (n4)[camino] edge  [bend right = 25] node[below = 0.15 cm] {$2$} (n6);
+        \path (n1) edge  node[above = 0.15 cm] {$30$} (n5);
+        \path (n2) edge  [bend right = 25] node[above = 0.15 cm] {$15$} (n4);
+        %si queremos un loop
+        %\path (A) edge [loop left] node[left] {$1/4$} (A);
+    \end{tikzpicture}

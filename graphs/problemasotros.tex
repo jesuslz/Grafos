@@ -1,0 +1,39 @@
+ \begin{tikzpicture}[auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
+        
+        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+        
+        \node[state] (A) at (-5, 0) {A};
+        \node[state] (B) at (-2.5, 3.5) {B};
+        \node[state] (C) at (2.5, 3.5) {C};
+        \node[state] (D) at (5, 0) {D};
+        \node[state] (E) at (2.5, -3.5) {E};
+        \node[state] (F) at (-2.5, -3.5) {F};
+        
+        \path (A) edge [bend right = -25] (B);
+        \path (A) edge [bend right = -25] (C);
+        \path (A) edge [bend right = -25] (D);
+        \path (A) edge [bend right = 25] (E);
+        \path (A) edge [bend right = 25] (F);
+        
+        \path (B) edge [bend right = -25] (C);
+        \path (B) edge [bend right = -25] (D);
+        \path (B) edge [bend right = 25] (E);
+        \path (B) edge [bend right = 25] (F);
+
+        \path (C) edge [bend right = -25] (D);
+        \path (C) edge [bend right = -25] (E);
+        \path (C) edge [bend right = -25] (F);
+
+        \path (D) edge [bend right = -25] (E);
+        \path (D) edge [bend right = -25] (F);
+
+        \path (E) edge [bend right = -25] (F);
+
+
+
+
+        %si queremos un loop
+        %\path (A) edge [loop left] node[left] {$1/4$} (A);
+    \end{tikzpicture}
