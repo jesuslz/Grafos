@@ -1,6 +1,6 @@
 # Fdb version 3
-["pdflatex"] 1541630582 "/Users/mirnazertuche/Documents/invOper/io-t-2/jes.tex" "jes.pdf" "jes" 1541630584
-  "/Users/mirnazertuche/Documents/invOper/io-t-2/jes.tex" 1541630581 7264 76637f02f5683a83bc12b652de02338a ""
+["pdflatex"] 1541637389 "/Users/mirnazertuche/Documents/invOper/io-t-2/jes.tex" "jes.pdf" "jes" 1541637391
+  "/Users/mirnazertuche/Documents/invOper/io-t-2/jes.tex" 1541637329 7263 0ea7197b32950b1b997bd05d8749361f ""
   "/usr/local/texlive/2018/texmf-dist/fonts/map/fontname/texfonts.map" 1511824771 3332 103109f5612ad95229751940c61aada0 ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1480098698 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2018/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1480098698 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -153,9 +153,9 @@
   "graphs/graphProblem5-2.tex" 1541626220 2315 4e6f5891239b78f5b0a76495f0233cbb ""
   "graphs/graphProblem5-3.tex" 1541626362 2303 d1b1715ae8be3869de0968ccf36faa90 ""
   "graphs/graphProblem5-4.tex" 1541626467 2597 c6442834b7e4181e361a426b6c815d6f ""
-  "graphs/problemasotros.tex" 1541630391 1469 8c74362da55f52921b3b2e2e66f85362 ""
-  "jes.aux" 1541630584 574 985ea314c65d3dd22b49e8eb6ec790dd ""
-  "jes.tex" 1541630581 7264 76637f02f5683a83bc12b652de02338a ""
+  "graphs/problemasotros.tex" 1541637386 1546 889d5c43605d39c71309333b8a43ba9d ""
+  "jes.aux" 1541637390 669 c27f8bf987faf54df2668bc04350679f ""
+  "jes.tex" 1541637329 7263 0ea7197b32950b1b997bd05d8749361f ""
   (generated)
   "jes.log"
   "jes.pdf"
