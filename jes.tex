@@ -6,6 +6,9 @@
 \usepackage{tikz}
 \usetikzlibrary{positioning}
 \definecolor {processblue}{cmyk}{0.96,0,0,0}
+
+\usepackage{enumerate}
+\usepackage{diagbox}
 %---------------------
 % Esto ya lo carga el estilo de La Gaceta:
 \usepackage{amsmath, amsthm, amssymb}
@@ -175,6 +178,94 @@ En el grafo siguiente halle:
 
 
     \input{graphs/graphProblem5-4.tex}
+
+
+%%---------------------------Problema6----------------------------------
+%-----------------------------------------------------------------------
+\section{}
+    El grafo sigueinte representa la estructura gerárgica de una organización, el nodo 
+    $j$ es subordinado de $i$, si $j$ desciende de $i$ y si existe el arco $(i,j),$ entonces
+    $j$ es subordinado directo de $i$.
+    
+    \begin{enumerate}
+        \item ¿Cuáles y cuantos subordinados directos tine cada elemento del sistema?
+        \item ¿Cuál es el total de subordinados de los vértices $1$ y $9$?
+        \item Halle el camino de mayor clase de subordinación.
+    \end{enumerate}
+
+    \input{graphs/graphProblem6-1.tex}
+
+
+%%---------------------------Problema7----------------------------------
+%-----------------------------------------------------------------------
+\section{}
+    Dado el siguiente grafo considere que:
+    \begin{enumerate}
+        \item El valor sobre los arcos mide la distancia  entre los vértices. Halle el camino 
+            de longitud mínima entre $1$ y $6$.
+        \item Si no se considera orientación, ¿variaría la longitud del grafo de menor longitud
+            que une dichos vértices?.
+    \end{enumerate}
+
+    \input{graphs/graphProblem7-1.tex}
+
+
+
+%%---------------------------Problema8----------------------------------
+%-----------------------------------------------------------------------
+
+\section{}
+    En cada una de las siguientes situaciones explique cómo construir el grafo asociado al
+    problema a resolver, ésto es, qué tomar como vértices y bajo que ley construir los 
+    arcos.
+    \begin{enumerate}[a)]
+        \item Seis diferentes marcas de alimentos se prueban con un niño de la siguiente 
+            forma: cada día se le da a comer al niño dos alimentos diferentes y se toma nota
+            de aquel con el que termina primero. Una vez analizados todos los pares posibles
+            se desea construir un grafo que sirva para determinar el alimento preferido del 
+            niño.
+        \item Se desea asociar el mapa de una ciudad, un grafo que represente "la vecindad"
+            entre municipios.
+    \end{enumerate}
+
+
+%%---------------------------Problema9----------------------------------
+%-----------------------------------------------------------------------
+\section{}
+
+
+%%---------------------------Problema10----------------------------------
+%-----------------------------------------------------------------------
+\section{}
+        Un agricultor dispone de un terreno de 5 hectáreasdividido en 4 partes iguales. Se 
+        pueden sembrar 4 productos A, B, C, D. Para evitar el empobrecimiento del terreno 
+        es necesario rotar cada año el cultivo en cada una de las 4 partes. Al comenzar se 
+        debe cultivar cada uno de los productos en una de las 4 partes.
+
+        \begin{table}[h]
+            \begin{center}
+            
+                
+            
+                \begin{tabular}{|c|c|c|c|c|}
+                    \hline
+                    \diagbox{Año $n-1$}{Año $n$} & A & B & C & D \\
+                    \hline
+                                            A   &   & 5 &   & 6 \\
+                                                \hline
+                                            B   &   &   & 7 &   \\
+                                                \hline
+                                            C   & 3 &   &   & 9 \\
+                                                \hline
+                                            D   & 5 & 7 & 4 &   \\
+                    \hline
+                
+                \end{tabular}   
+            
+            \end{center}
+            \caption{}
+        \end{table}
+
 
 
 %%---------------------------Otros problemas----------------------------------

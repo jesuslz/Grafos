@@ -1,0 +1,48 @@
+\begin{figure}[h]
+
+ \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
+        
+        %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+        
+        \node[state] (n1) at (-5, 0) {1};
+        \node[state] (n2) at (-2.5, 2.5) {2};
+        \node[state] (n4) at (2.5, 2.5) {4};
+        \node[state] (n6) at (5, 0) {6};
+        \node[state] (n5) at (2.5, -2.5) {5};
+        \node[state] (n3) at (-2.5, -2.5) {3};
+        
+        \path (n1) edge node[above = 0.15 cm] {$1$} (n2);
+        \path (n1) edge node[above = 0.15 cm] {$3$} (n3);
+
+        \path (n2) edge node[above = 0.15 cm] {$3$} (n4);
+        \path (n2) edge node[above = 0.15 cm, pos = 0.20] {$2$} (n5);
+
+        \path (n3) edge node[right = 0.15 cm] {$1$} (n2);
+        \path (n3) edge node[above = 0.15 cm, pos = 0.20] {$1$} (n4);
+        \path (n3) edge node[above = 0.15 cm] {$2$} (n5);
+
+        \path (n5) edge node[left = 0.15 cm] {$1$} (n4);
+
+        \path (n4) edge node[above = 0.15 cm] {$4$} (n6);
+        
+
+
+
+
+        %si queremos un loop
+        %\path (A) edge [loop left] node[left] {$1/4$} (A);
+        
+        %otras opciones: 
+        %\path (A) 
+        %    edge [left] node [blue, pos=0.5, sloped, above] {$0 \rightarrow [x = x.0.0]$} (B)
+        %    edge [left] node [cyan, pos=0.8]{$1 \rightarrow [x = x.0.1]$} (C)(B) 
+        %    edge [loop above] node [align=center] {$0 \rightarrow$ \\ $[x = x.0]$ }   (B)
+        %    edge [bend right,left] node  {$1 \rightarrow [x = x.1]$ }   (C)
+        %    edge [] node [red, pos=0.2] {$\$  \rightarrow  [x = x.0.\$]$ } (D);  
+
+
+    \end{tikzpicture}
+     \caption{hola muchbaibdfunl}
+\end{figure}  

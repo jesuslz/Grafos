@@ -1,2 +1,6 @@
-    
-\end{figure}  
+\path (A) 
+    edge [left] node [blue, pos=0.5, sloped, above] {$0 \rightarrow [x = x.0.0]$} (B)
+    edge [left] node [cyan, pos=0.8]{$1 \rightarrow [x = x.0.1]$} (C)(B) 
+    edge [loop above] node [align=center] {$0 \rightarrow$ \\ $[x = x.0]$ }   (B)
+    edge [bend right,left] node  {$1 \rightarrow [x = x.1]$ }   (C)
+    edge [] node [red, pos=0.2] {$\$  \rightarrow  [x = x.0.\$]$ } (D);  
