@@ -1,4 +1,7 @@
-    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+\begin{figure}[h]
+
+
+\begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
         state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
         draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
     
@@ -17,17 +20,17 @@
 
         \path (a) edge [bend right = -25] node[above = 0.15 cm] {$1$} (A);
         \path (a)[camino] edge node[below = 0.0 cm] {$1$} (B);
-        \path (a)[camino] edge [bend right = 25] node[above = 0.15 cm] {$1$} (C);
+        \path (a) edge [bend right = 25] node[above = 0.15 cm] {$1$} (C);
         \path (A) edge [bend right = -25] node[above = 0.15 cm] {$1$} (D);
         \path (A) edge node[above = 0.15 cm] {$1$} (E);
         \path (B) edge  [bend right = -25] node[above = 0.15 cm] {$1$} (D);
-        \path (B) edge  node[below = 0.0 cm] {$1$} (H);
-        \path (B)[camino] edge  [bend right = 25] node[above = 0.0 cm] {$1$} (F);
+        \path (B)[camino] edge  node[below = 0.0 cm] {$1$} (H);
+        \path (B) edge  [bend right = 25] node[above = 0.0 cm] {$1$} (F);
         \path (C) edge [bend right = -15] node[below = 0.0 cm] {$1$} (E);
         \path (C) edge [bend right = 25] node[below = 0.0 cm] {$1$} (H);
-        \path (F)[camino] edge [bend right = 25] node[below right = 0.0 cm] {$1$} (H);
+        \path (F) edge [bend right = 25] node[below right = 0.0 cm] {$1$} (H);
         \path (H)[camino] edge node[above = 0.15 cm] {$1$} (b);
-        \path (G)[camino] edge [bend right = -25] node[below right = 0.15 cm] {$1$} (b);
+        \path (G) edge [bend right = -25] node[below right = 0.15 cm] {$1$} (b);
         \path (D) edge [bend right = -25] node[above right = 0.15 cm] {$1$} (G);
         \path (E) edge [bend right = -15] node[above = 0.15 cm] {$1$} (G);
         \path (E) edge [bend right = -15] node[above = 0.15 cm] {$1$} (b);
@@ -36,3 +39,6 @@
         %si queremos un loop
         %\path (A) edge [loop left] node[left] {$1/4$} (A);
     \end{tikzpicture}
+    
+    \caption{En azul uno de los caminos con menor cantidad de arcos.}
+\end{figure}

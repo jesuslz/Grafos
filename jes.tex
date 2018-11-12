@@ -9,6 +9,8 @@
 
 \usepackage{enumerate}
 \usepackage{diagbox}
+\usepackage{caption}
+\captionsetup{justification=centerlast,labelfont=bf,textfont=it}
 %---------------------
 % Esto ya lo carga el estilo de La Gaceta:
 \usepackage{amsmath, amsthm, amssymb}
@@ -26,13 +28,13 @@
 \setcounter{page}{1} 
 \journame{UAdeC-FCFM}
 \yearofpublication{2018}
-\volume{1}
-\issuenumber{0}
+%\volume{1}
+%\issuenumber{0}
 %---------------------
 
 %---------------------
 % Deja esto as\'{\i}:
-\belongstopart{Art\'{\i}culos} 
+\belongstopart{Teoría de grafos} 
 
 
 %---------------------
@@ -40,7 +42,7 @@
 \\ Investigación de operaciones \\ Teoría de Grafos \\ Tarea 2 \\ Alibeit Kakes}
 \author{Jesús López Zavala} % o \author{Un Autor y Otro Autor}, etc.
 % Opcional:
-\shorttitle{Ejemplo de c\'omo escribir un art\'{\i}culo para La Gaceta}
+\shorttitle{Investigación de Operaciones}
 %---------------------
 
 %---------------------
@@ -58,9 +60,6 @@
 %---------------------
 
 
-
-
-
 %%---------------------------Problema1----------------------------------
 %-----------------------------------------------------------------------
 \section{Problema 1}
@@ -73,18 +72,39 @@
     
     \input{graphs/graphProblem1.tex}
 
-    Para resolverlo hay que aplicar el algoritmo de Ford, a continuación se muestran las
-    marcas sobre cada nodo:
-
+    Para resolverlo hay que aplicar el algoritmo de Ford, a continuación se muestran los pasos 
+    aplicados para generar cada una de las marcas:
+    \begin{enumerate}
+        \item Marcaremos el inicio del camino con la marca $(-,0).$
+        \item Marcaremos cada uno de los nodos $j$  con una marca de la forma $(i, e(j))$, donde 
+        $ e(j) = max \{e(i) + c(i,j)\}$ y $c(i, j)$ es la longitud del arco que conecta a $i$ y a $j$.
+            Para iniciar tomaremos a $x_1$ como el nodo i; de forma que 
+            las marcas que apareceran en los nodos $x_2$ y $x_3$ serán $(x_1, 1)$ y $(x_1, 2)$ 
+            respectivamente.
+        \item Para marcar el nodo $i = x_4$, los nodos $j = \{ x_1, x_2, x_3\}$ deberan esta marcados.
+            Como en el paso anterior ésto ya se realizo, ahora podremos elegir entre el conjunto de marcas
+            $e(j)$ la que es máxima, de ésta forma la marca que acompaña al nodo $x_4$ es $(x_2, 16)$.
+        \item Para marcar $x_4$ aplicamos el mismo razonamiento que en el paso anterior y el resultado
+        de la marca es: $(x_2, 32)$.
+        \item Finalmente el nodo $x_6$ se quedará con la marca $(x_5, 36)$.
+    \end{enumerate}
+    A continuación se muestra el procedimiento hecho anteriormente para conseguir cada una de las 
+    marcas. 
     \input{graphs/graphProblem1-2.tex}
 
     Para encontrar el camino óptimo realizamos la siguiente operación:
-    $$ e(j) - e(i) = c(ij)$$
+    
+    \begin{equation}\label{eq:p1-1}
+        e(j) - e(i) = c(ij),
+    \end{equation}
+    
     y si esta ecuación se cumple entonces nos quedamos con el arco entre ambas marcas.
     Este análisis conduce al siguiente conjunto de arcos que conforman el camino de longitud máxima:
-    $$ U = \{ (x_1, x_2), (x_2, x_5), (x_5, x_6) \} $$
-
-
+    
+    \begin{equation}
+        U = \{ (x_1, x_2), (x_2, x_5), (x_5, x_6) \}.    
+    \end{equation}
+    
 
 
 
@@ -92,14 +112,15 @@
 %%---------------------------Problema2----------------------------------
 %-----------------------------------------------------------------------
 
-\section{}
+\section{Problema}
     ¿Podemos conocer la longitud del camino extremal sin conocer explícitamente los arcos que la 
     componen?. ¿Se pueden marcar más de una vez los vértices? \\
     \\Para conocer la longitud del camino extremal es necesario conocer explícitamente
         la relacion que existe entre los vértices (arcos), así como el valor que cada uno de los arcos tiene
-        asignado. Si marcamos más de una vez los vértices, entonces habrá ambiguedad y el algoritmo con el que
-        se esté trabajando, para nuestro caso el algoritmo de Ford, no estará cumpliendo con el objetivo de 
-        encontrar un camino extremal.
+        asignado. Si marcamos más de una vez los vértices, entonces no habrá ambiguedad y el algoritmo con el que
+        se esté trabajando, para nuestro caso el algoritmo de Ford, encontrará todos las soluciones extremales del 
+        problema dado. Esto es porque se pondran más de una marca en un nodo si la longitud medida al llegar a dicho
+        nodo es igual para un determinado número de arcos.
 
 
 
@@ -107,18 +128,24 @@
 
 %%---------------------------Problema3----------------------------------
 %-----------------------------------------------------------------------
-\section{}
+\section{Problema}
     Formule el algoritmo de Ford para hallar caminos mínimos.\\
     \\Supongamos que se quiere encontrar el camino mínimo entre los vértices $s$ y $t$ de algún grafo dado,
         para hacerlo formularemos el algoritmo de Ford como sigue:
         \begin{center}
             \begin{enumerate}
                 \item Marcar el vértice $s$ con la marca $(-, 0)$.
-                \item Marcar el vértice $j$ con la marca $(i, e(j))$, con $$ e(j) = min \{e(i) + c(ij)\}$$.
+                \item Marcar el vértice $j$ con la marca $(i, e(j))$, con 
+                    \begin{equation}\label{eq:p2-1}
+                        e(j) = min \{e(i) + c(i,j)\}. 
+                    \end{equation}
                 \item Aplicar el paso anterior hasta llegar al vértice $t$.
                 \item Para encontrar el camino mínimo se hace un recorrido desde el vértice $t$ hasta el 
-                        vértice $s$ buscando los arcos tales que cumplan: $$e(j) - e(i) = c(i,j),$$ \\de 
-                        forma que el conjunto de arcos encontrados es el camino mínimo.
+                        vértice $s$ buscando los arcos tales que cumplan: 
+                        \begin{equation}\label{eq:p2-2}
+                            e(j) - e(i) = c(i,j),
+                        \end{equation}
+                        de forma que el conjunto de arcos encontrados es el camino mínimo.
             \end{enumerate}
         \end{center}
 
@@ -128,88 +155,181 @@
 
 %%---------------------------Problema4----------------------------------
 %-----------------------------------------------------------------------
-\section{Problema 4}
+\section{Problema}
     En el grafo del ejercicio 1, halle el camino de longitud mínima.\\
     \\A continuación se muestran las marcas obtenidas al aplicar el algoritmo de Ford 
     descrito anteriormente:
     
     \input{graphs/graphProblem4.tex}
-
-    Aplicando el paso $4$ descrito en el problema anterior obtenemos el siguente conjunto de arcos:
-    $$ U = \{ (x_1, x_3), (x_3, x_4), (x_4, x_6)\}, $$
-    siendo éste el camino de longitud mínima.
-
+    
+    \pagebreak
+    Aplicando la ecuación \eqref{eq:p2-2}, la cual fue descrita en el paso $4$ del problema anterior, obtenemos el siguente conjunto de arcos:
+    \begin{equation}\label{eq:p4-1}
+        U = \{ (x_1, x_3), (x_3, x_4), (x_4, x_6)\},    
+    \end{equation}
+    %$$ U = \{ (x_1, x_3), (x_3, x_4), (x_4, x_6)\}, $$
+    siendo éste el camino de longitud \eqref{eq:p4-1} mínima.
+    
 
 
 %%---------------------------Problema5----------------------------------
 %-----------------------------------------------------------------------
-\section{Problema 5}
-En el grafo siguiente halle:
-    \begin{enumerate}
-        \item Encontrar el camino de longitud máxima que une los nodos $\alpha$ y $\beta$.
-        \item Encontrar el camino de longitud mínima que une los nodos $\alpha$ y $\beta$.
-        \item El recorrido que acumule la menor cantidad de arcos, de $\alpha$ a $\beta$.
-    \end{enumerate}
-
+\section{Problema}
+    En el grafo siguiente halle:
+    
+    \begin{center}
+        \begin{enumerate}[a)]
+            \item Encontrar el camino de longitud máxima que une los nodos $\alpha$ y $\beta$.
+            \item Encontrar el camino de longitud mínima que une los nodos $\alpha$ y $\beta$.
+            \item El recorrido que acumule la menor cantidad de arcos, de $\alpha$ a $\beta$.
+        \end{enumerate}
+    \end{center}
     
     \input{graphs/graphProblem5-1.tex}
-
-    1. Aplicando el algoritmo de Ford se obtiene que el conjunto:
-    $$ U = \{ (\alpha, B), (B, F), (F, H), (H, \beta) \}, $$
-    es el camino de longitud máxima. A continuación se muestra en la figura a este conjunto de arcos 
+    \pagebreak
+    a) Aplicando el algoritmo de Ford se obtiene que el conjunto:
+    \begin{equation}
+        U = \{ (\alpha, B), (B, F), (F, H), (H, \beta) \},     
+    \end{equation}
+    
+    es el camino de longitud máxima. En la figura se puede observar a este conjunto de arcos 
     coloreados en tono azul:
 
     \input{graphs/graphProblem5-2.tex}
 
 
-    2. El algoritmo de Ford para encontrar caminos mínimos conduce a que el siguiente conjunto:
-    $$ U = \{ (\alpha, C), (C, H), (H, \beta) \}, $$
+    b) El algoritmo de Ford para encontrar caminos mínimos conduce a que el siguiente conjunto:
+    \begin{equation}
+        U = \{ (\alpha, C), (C, H), (H, \beta) \},
+    \end{equation}
+    
     es el camino de longitud mínima.\\ A continuación se muestra la figura con las marcas resultantes 
     en cada vértice, así como los arcos que conforman 
-    al conjunto $U$. Dichos arcos estan coloreados en azul y sus respectivas longitudes se muestran en color
-    rojo:
+    al conjunto $U$. Dichos arcos estan coloreados en azul y sus respectivas longitudes se muestran en 
+    color rojo:
 
     \input{graphs/graphProblem5-3.tex}
 
-    3. Para responder a esta pregunta, sustituiremos los valores predeterminados en cada 
+    c) Para responder a esta pregunta, sustituiremos los valores predeterminados en cada 
     arco por el valor de 1, luego aplicaremos el algoritmo de Ford para encontrar así 
     todos los posibles conjuntos con el menor número de arcos.
-    Luego de aplicar el algoritmo, el grafo reslultante se muestra a continuación:
+    \\Luego de aplicar el algoritmo, el grafo reslultante se muestra a continuación:
 
+    \pagebreak
 
     \input{graphs/graphProblem5-4.tex}
+    Observamos que algunos vértices tienen asignadas más de una marca, ésto se hizo con el fin de 
+    encontrar todas las soluciones al problema; las cuales son:
+    \begin{center}
+       \begin{equation}
+            U_1 = \{(\alpha,A), (A,E), (E,\beta)\},              
+       \end{equation}
+       
+       \begin{equation}
+            U_2 = \{(\alpha,B), (B,H), (H,\beta)\},
+       \end{equation}
+
+       \begin{equation}
+            U_3 = \{(\alpha,C), (C,E), (E,\beta)\},
+       \end{equation}
+
+       \begin{equation}
+            U_4 = \{(\alpha,C), (C,H), (H,\beta)\},
+       \end{equation}
+
+       \begin{equation}
+            U_5 = \{(\alpha,C), (C,E), (E,G), (G,\beta)\},
+       \end{equation}
+
+       \begin{equation}
+            U_4 = \{(\alpha,A), (A,E), (E,G), (G,\beta)\}.
+       \end{equation}
+    \end{center}
+    
 
 
 %%---------------------------Problema6----------------------------------
 %-----------------------------------------------------------------------
-\section{}
+\section{Problema}
     El grafo sigueinte representa la estructura gerárgica de una organización, el nodo 
     $j$ es subordinado de $i$, si $j$ desciende de $i$ y si existe el arco $(i,j),$ entonces
     $j$ es subordinado directo de $i$.
     
-    \begin{enumerate}
-        \item ¿Cuáles y cuantos subordinados directos tine cada elemento del sistema?
-        \item ¿Cuál es el total de subordinados de los vértices $1$ y $9$?
-        \item Halle el camino de mayor clase de subordinación.
-    \end{enumerate}
+    \begin{center}
+        \begin{enumerate}[a)]
+            \item ¿Cuáles y cuantos subordinados directos tine cada elemento del sistema?
+            \item ¿Cuál es el total de subordinados de los vértices $1$ y $9$?
+            \item Halle el camino de mayor clase de subordinación.
+        \end{enumerate}        
+    \end{center}
 
     \input{graphs/graphProblem6-1.tex}
 
+    \pagebreak
+
+    a) Se escribiran los elementos del sistema con sus respectivos subordinados directos.
+    La notación $1,2,3,4\{2,5\}$, por ejemplo, significará que a los elementos 1, 2, 3 y 4 le corresponden 
+    los elementos 2 y 5 como subordinados directos:
+
+    \begin{center}
+        \begin{enumerate}
+            \item $4,7,11,12,14,15,16\{\phi \}.$
+            \item $2\{3\}, 5\{6\}, 6\{7\},  8\{9\}.$
+            \item $1\{2,8\},  3\{4,5\},   9\{10,13\}, 10\{11,12\}.$
+            \item $13\{14,15,16\}.$
+        \end{enumerate}
+    \end{center}
+
+    b) El vértice 1 tiene como subordinados un total de 14 elementos, mientras que el vértice 9 tiene
+    tiene un total de 7 subordinados.
+
+    c) Para responder a esta pregunta se le dio el valor de 1 a cada arco que se muestra en la Figura 8,
+    luego se aplicó el algoritmo de Ford para encontrar el camino con mayor número de arcos, los 
+    resultados obtenidos se muestran en la siguiente figura:
+
+    \input{graphs/graphProblem6-2.tex}
+    \pagebreak
+    El camino con mayor número de arcos es:
+    \begin{center}
+        \begin{equation}
+            U = \{ (1,2), (2,3), (3,5), (5,6), (6,7) \}.
+        \end{equation}        
+    \end{center}
 
 %%---------------------------Problema7----------------------------------
 %-----------------------------------------------------------------------
-\section{}
+\section{Problema}
     Dado el siguiente grafo considere que:
-    \begin{enumerate}
-        \item El valor sobre los arcos mide la distancia  entre los vértices. Halle el camino 
-            de longitud mínima entre $1$ y $6$.
-        \item Si no se considera orientación, ¿variaría la longitud del grafo de menor longitud
-            que une dichos vértices?.
-    \end{enumerate}
+    \begin{center}
+        \begin{enumerate}[a)]
+            \item El valor sobre los arcos mide la distancia  entre los vértices. Halle el camino 
+                de longitud mínima entre $1$ y $6$.
+            \item Si no se considera orientación, ¿variaría la longitud del grafo de menor longitud
+                que une dichos vértices?.
+        \end{enumerate}        
+    \end{center}
 
     \input{graphs/graphProblem7-1.tex}
+    \pagebreak
+    a) Aplicando el algoritmo de Ford:
 
+    \input{graphs/graphProblem7-2.tex}
+    Observamos que en el nodo 4 hay más de una marca, ésto sugiere que hay un total de 3 caminos de
+    longitud mínima, los cuales son:
+    \begin{center}
+        \begin{equation}
+            U_1 = \{(1,2), (2,4), (4,6)\}, U_2 = \{(1,2), (2,5), (5,4), (4,6)\}, U_3 = \{(1,3), (3,4), (4,6)\}.            
+        \end{equation}
+    \end{center}
 
+    b) Si dibujamos el grafo sin orientación, entonces pordríamos pensar que es necesario aplicar el 
+    algoritmo de Kruskal para encontrar la cadena con mínima longitud, y así compararla con el 
+    resultado anterior. Al hacer ésto veremos que el algoritmo da cómo resultado un árbol 
+    donde podría haberse omitido una arista a la hora de darle sentido 
+    a la situación real. Ésta observacion conduce a pensar que todo depende de la situación real que 
+    se quiere resolver, por lo tanto, la longitud no varía. 
+    
+ 
 
 %%---------------------------Problema8----------------------------------
 %-----------------------------------------------------------------------
@@ -231,7 +351,7 @@ En el grafo siguiente halle:
 
 %%---------------------------Problema9----------------------------------
 %-----------------------------------------------------------------------
-\section{}
+\section{Problema}
 
 
 %%---------------------------Problema10----------------------------------
@@ -268,9 +388,52 @@ En el grafo siguiente halle:
 
 
 
+%%---------------------------Problema11----------------------------------
+%------------------------------------------------------------------------
+\section{Problema}
+        Construya los grafos asociados a un proyecto cuyas actividades y antecedentes se dan a 
+        continuación:
+        \begin{table}[h]
+            \begin{center}
+            
+                
+            
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Actividades & Antecedentes \\
+                    \hline
+                    1 -2 & -- \\
+                    \hline
+                    1 -3 & -- \\
+                    \hline
+                    1 -4 & -- \\
+                    \hline
+                    1 -5 & -- \\
+                    \hline
+                    2 -4 & 1 -2 \\
+                    \hline
+                    3 -4 & 1 -3 \\
+                    \hline 
+                    4 -5 & 2 -4, 1 -4, 3 -4 \\
+                    \hline 
+                    5 -6 & 4 -5, 1 -5 \\
+                    \hline
+                    6 -7 & 6 -6                    \\
+                    \hline                      
+                
+                \end{tabular}   
+            
+            \end{center}
+            \caption{}
+        \end{table}
+
+        El grafo asociado es:
+
+        \input{graphs/graphProblem11.tex}
+
 %%---------------------------Otros problemas----------------------------------
 %-----------------------------------------------------------------------
-\section{Problema que resolvimos en clase}
+\section{Problema que resolvimos en clase as}
    \input{graphs/problemasotros.tex}
 
 

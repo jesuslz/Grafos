@@ -1,0 +1,53 @@
+\begin{figure}[h]
+
+
+    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+            state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+            draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
+        
+            %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+            \node[state] (n1) at (0, 0) [label = left: $ (- {,} 0) $] {1};
+            \node[state] (n2) at (-1.5, -2.5) [label = left: $ (1 {,} 1) $] {2};
+            \node[state] (n3) at (-2.5, -4.5) [label = left: $ (2 {,} 2) $] {3};
+            \node[state] (n4) at (-3.5, -6.5) [label = left: $ (3 {,} 3) $] {4};
+            \node[state] (n5) at (-1.5, -6.5) [label = right: $ (3 {,} 3) $] {5};
+            \node[state] (n6) at (-0.5, -8.5) [label = right: $ (5 {,} 4) $]{6};
+            \node[state] (n7) at (0.5, -10.5) [label = left: $ (6 {,} 5) $] {7};
+            \node[state] (n8) at (1.5, -2.5) [label = left: $ (1 {,} 1) $] {8};
+            \node[state] (n9) at (3.5, -2.5) [label = above: $ (8 {,} 2) $] {9};
+            \node[state] (n10) at (2.5, -4.5) [label = left: $ (9 {,} 3) $] {10};
+            \node[state] (n11) at (1.5, -6.5) [label = below: $ (10 {,} 4) $] {11};
+            \node[state] (n12) at (3.5, -6.5) [label = below: $ (10 {,} 4) $] {12};
+            \node[state] (n13) at (5.5, -2.5) [label = above: $ (9 {,} 3) $] {13};
+            \node[state] (n14) at (5.5, -6.5) [label = below: $ (13 {,} 4) $] {14};
+            \node[state] (n15) at (7.0, -5.0) [label = below: $ (13 {,} 4) $] {15};
+            \node[state] (n16) at (7.5, -2.5) [label = below: $ (13 {,} 14) $] {16};
+            
+    
+            
+            \path (n1)[camino] edge node[above = 0.15 cm] {$1$} (n2);
+            \path (n1) edge node[above = 0.15 cm] {$1$} (n8);
+            \path (n2)[camino] edge node[above = 0.15 cm] {$1$} (n3);
+            \path (n3) edge node[above = 0.15 cm] {$1$} (n4);
+            \path (n3)[camino] edge node[above = 0.15 cm] {$1$} (n5);
+            \path (n5)[camino] edge node[above = 0.15 cm] {$1$} (n6);
+            \path (n6)[camino] edge node[above = 0.15 cm] {$1$} (n7);
+            
+            \path (n8) edge node[above = 0.15 cm] {$1$} (n9);
+            \path (n9) edge node[above = 0.15 cm] {$1$} (n10);
+            \path (n10) edge node[above = 0.15 cm] {$1$} (n11);
+            \path (n10) edge node[above = 0.15 cm] {$1$} (n12);
+    
+            \path (n9) edge node[above = 0.15 cm] {$1$} (n13);
+    
+            \path (n13) edge node[right = 0.15 cm] {$1$} (n14);
+            \path (n13) edge node[above = 0.15 cm] {$1$} (n15);
+            \path (n13) edge node[above = 0.15 cm] {$1$} (n16);
+            
+            %si queremos un loop
+            %\path (A) edge [loop left] node[left] {$1/4$} (A);
+        \end{tikzpicture}
+    
+    
+        \caption{En azul se representa el camino con mayor número de arcos.}
+    \end{figure}
