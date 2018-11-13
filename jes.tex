@@ -348,7 +348,48 @@
             entre municipios.
     \end{enumerate}
 
+    a) Tomaremos como vértices a los alimentos, es decir:\\
+    \begin{equation}
+        V = \{1,2,3,4,5,6\},
+    \end{equation}
+    además
+    \begin{equation}
+        U \subset V \times V.
+    \end{equation}
 
+    El total de elementos del conjunto $U$ está dado por la combinatoria de ${6 \choose 2}$ y
+    se definiran a la hora de realizar una prueba con un niño en particular.\\
+    \\Ahora diremos que el grafo
+    \begin{equation}
+        G(U,V)
+    \end{equation}
+    se construirá tomando en cuenta al par $(a, b)$, donde $a$ y $b$ son alimentos. Dicha
+    notación significa que el alimento $b$ le gustó más que el alimento $a$, y se representará
+    graficamente con un arco dirigido de $a$ a $b$. Note que:
+    \begin{equation}
+        (a,b) \in U.
+    \end{equation}
+    En la siguiente figura se muestra el grafo que se usará a la hora de que se lleve a cabo 
+    el experimento con los alimentos. Observe que no está orientado, pero la orientación 
+    se realizará a la hora de que se registre el alimento que el niño se termine primero.
+
+    \input{graphs/problemasotros.tex}
+    \pagebreak
+
+    b) Supongamos que hay un total de $n$ municipios en una ciudad. Para asociar un grafo a 
+    la vecindad entre municiopios, tenemos que definir quienes serán los vértices del grafo. Es 
+    conveniente definir a cada municipio como un vértice, entonces el conjunto de vértices 
+    estará dado como:
+    \begin{equation}
+        V = \{ m1, m2, ... , m_n \},
+    \end{equation}
+    donde el elemento $m_i$ significa el municipio número $i$.\\
+    \\Como sólo nos interesa saber qué municipios comparten vecindad, entones el grafo será no 
+    orientado y trazaremos aristas entre los vértices bajo la siguiente regla:
+    \begin{equation}
+        (i, j) \in U \subset V \times V,
+    \end{equation}
+    sólo si $i$ es vecino de $j$.
 %%---------------------------Problema9----------------------------------
 %-----------------------------------------------------------------------
 \section{Problema}
@@ -387,7 +428,9 @@
         \end{table}
 
 
+        \input{graphs/graphProblem10-1.tex}
 
+        \pagebreak
 %%---------------------------Problema11----------------------------------
 %------------------------------------------------------------------------
 \section{Problema}
@@ -434,7 +477,7 @@
 %%---------------------------Otros problemas----------------------------------
 %-----------------------------------------------------------------------
 \section{Problema que resolvimos en clase as}
-   \input{graphs/problemasotros.tex}
+   
 
 
 
