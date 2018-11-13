@@ -1,0 +1,33 @@
+\begin{figure}[h]
+    
+    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+                state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+                draw,processblue , text=blue , minimum width =1 cm, scale = 1.0}]
+            
+            %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+            \node[state] (1) at (-5, 0) {1};
+            \node[state] (5) at (1.5, 0) {5};
+            \node[state] (7) at (4.5, 0) {7};
+            \node[state] (6) at (5.0, 1.5) {6};
+            
+            \path (1) edge [bend right = -30] node[above = 0.15] {1 -a} (6);
+            \path (1) edge [bend right = -35] node[above = 0.05] {1 -b} (5);
+            \path (1) edge [bend right = -20] node[above = 0.05] {1 -c} (5);
+            \path (1) edge  node[above = 0.05] {1 -d} (5);
+            \path (1) edge [bend right = 20] node[above = 0.05] {1 -e} (5);
+
+            \path (1) edge [bend right = 35] node[above = 0.05] {1 -f} (6);
+            \path (1) edge [bend right = 35] node[above = 0.05] {1 -g} (7);
+
+            \path (5) edge node[above = 0.05] {2 -a} (6);
+
+            \path (6) edge node[right = 0.05] {3 -a} (7);
+            
+
+            %si queremos un loop
+            %\path (A) edge [loop left] node[left] {$1/4$} (A);
+        \end{tikzpicture}
+    
+    
+        \caption{}
+    \end{figure}

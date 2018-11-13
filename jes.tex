@@ -428,8 +428,36 @@
         \end{table}
 
 
+        
+        Los números significan la ganancia relativa en nurtientes obtenida si en un año 
+        sembramos tal producto a partir de otro sembrado el año anterior. El espacio en blanco
+        significa, rotación imposible.
+        \begin{enumerate}[a)]
+            \item Hallar el grafo que represente las posibles rotaciones del cultivo en los primeros 
+                4 años de 	siembra.
+            \item ¿Qué secuencia de rotaciones brinda la mayor ganancia en estos 4 años?.
+            \item ¿Cómo obtener la mejor sucesión de rotaciones para la parcela que se sembró 
+                inicialmente 	con A?
+        \end{enumerate}
+        \pagebreak
+        a) El siguiente grafo representa las rotaciones del cultivo en los primeros 4 años de siembra:
         \input{graphs/graphProblem10-1.tex}
+        \pagebreak
 
+        b) Para ello vamos a aplicar el algoritmo de Ford, las marcas resultantes se muesrtan a 
+        continuación:
+        \input{graphs/graphProblem10-2.tex}\\
+        La rotación que brinda la mejor ganancia en los 4 años esta asociada a la parecela donde al 
+        inicio se sembró el producto $C$. Esta rotación es: $C, D, B, C, D$. En términos de camino 
+        óptimo luce como:
+        \begin{equation}
+            U = \{ (I,C), (C,D), (D,B), (B,C), (C,D) \}.
+        \end{equation}\\
+        c) La mejor rotación de sucesiones para la parcela donde al inicio se sembró el producto $A$ es:
+        $A, D, B, C, D$, que en notación de camino óptimo es:
+        \begin{equation}
+            U = \{ (I,A), (A,D), (D, B), (B,C), (C,D) \}.
+        \end{equation}
         \pagebreak
 %%---------------------------Problema11----------------------------------
 %------------------------------------------------------------------------
@@ -474,14 +502,246 @@
 
         \input{graphs/graphProblem11.tex}
 
-%%---------------------------Otros problemas----------------------------------
+%%---------------------------Problema12----------------------------------
 %-----------------------------------------------------------------------
-\section{Problema que resolvimos en clase as}
-   
+\section{Problema}
+        Analice, en los grafos representados por las figuras 16 y 17, que se dan a continuación, 
+        la necesidad o no de arcos artificiales.\\
+        En el caso del grafo 18, construya el listado de actividades verdaderas con sus correspondientes
+        antecedentes.
 
+        \input{graphs/graphProblem12-1.tex}
+        \input{graphs/graphProblem12-2.tex}
+        \input{graphs/graphProblem12-3.tex}
+        \pagebreak
 
+        En los grafos de las figuras 16 y 17 podemos omitir uno de los dos arcos que aparecen en cada
+        figura:
+        \input{graphs/graphProblem12-4.tex}
+        \input{graphs/graphProblem12-5.tex}\\
+        
+        El listado correspondiente a las actividades de la figura 18 es:
+
+        \begin{table}[h]
+            \begin{center}
+            
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Actividades & Antecedentes \\
+                    \hline
+                    1 -a & -- \\
+                    \hline
+                    1 -b & -- \\
+                    \hline
+                    1 -c & -- \\
+                    \hline
+                    1 -d & -- \\
+                    \hline
+                    1 -e & -- \\
+                    \hline
+                    1 -f & -- \\
+                    \hline 
+                    1 -g & -- \\
+                    \hline 
+                    2 -a & 1 -b, 1 -c, 1 -d, 1 -e \\
+                    \hline
+                    3 -a & 1 -a, 2 -a, 1 -f                    \\
+                    \hline                      
+                
+                \end{tabular}   
+            
+            \end{center}
+            \caption{}
+        \end{table}
+
+        Al hacer un diagrama de estas actividades obtendremos la idea principal del grafo mostrado en
+        la figura 18. Observe que en la figura 18 es importante la introducción de arcos artificiales para darle 
+        sentido al siguiente diagrama:
+        \input{graphs/graphProblem12-6.tex}
 
 %---------------------------
+
+%%---------------------------Problema13----------------------------------
+%-----------------------------------------------------------------------
+\section{Problema}
+        ¿Puede estar asociado el siguiente grafo a un proyecto? ¿Por qué?\\
+        \input{graphs/graphProblem13.tex}\\
+        La respuesta es no, porque el grafo asociado a un proyecto no puede tener 
+        corcuitos por la naturaleza del mismo.
+
+
+%%---------------------------Problema15----------------------------------
+%-----------------------------------------------------------------------
+\section{Problema}
+        Analice la existencia o no de circuitos en el grafo asociado a la siguiente tabla.
+
+        \begin{table}[h]
+            \begin{center}
+            
+                \begin{tabular}{|c|c|}
+                    \hline
+                    Actividades & Antecedentes \\
+                    \hline
+                    A & B \\
+                    \hline
+                    B & A \\
+                    \hline
+                    C & B \\
+                    \hline
+                    D & C \\
+                    \hline
+                    E & A \\
+                    \hline
+                    F & A \\
+                    \hline 
+                    G & E, K, J \\
+                    \hline 
+                    H & I, M \\
+                    \hline
+                    I & E, K  \\
+                    \hline 
+                    J & I, M \\ 
+                    \hline 
+                    K & L, D \\   
+                    \hline 
+                    L & I, M \\  
+                    \hline 
+                    M & L, D \\           
+                    \hline                      
+                
+                \end{tabular}   
+            
+            \end{center}
+            \caption{}
+        \end{table}
+
+        Rápidamente la tabla muestra la existencia de circuitos ya que la actividad A necesita que 
+        la actividad B esté terminada, mietras que la actividad B necesita como antecedente a la 
+        actividad A. Algo simlar ocurre con L y M.
+
+
+
+
+
+
+%%---------------------------Problema16----------------------------------
+%-----------------------------------------------------------------------
+\section{Problema}
+        Detremine la duración mínima del proyecto cuyo grafo aparece a continuación:
+        \input{graphs/graphProblem16-1.tex}
+        \pagebreak
+
+
+%%---------------------------Problema17----------------------------------
+%-----------------------------------------------------------------------
+\section{Problema}
+        Un idividuo quiere estudiar cierta carrera mediante cursos libres y conoce las asignaturas 
+        de que consta, así como las reaciones entre ellas. Además, de acuerdo con la dificultad y 
+        extensión de los programas, se ha calculado cuántas semanas de estudio necesita dedicarle 
+        a cada asignatura, lo que se muestra en la siguiente tabla:
+
+        \begin{table}[h]
+            \begin{center}
+            
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    Asignaturas & Tiempo de estudio & Antecedentes \\
+                    \hline
+                    Geometría Analítica (A) & 10 & -- \\
+                    \hline
+                    Análisis I (B) & 16 & --\\
+                    \hline
+                    Análisis II (C) & 16 & B, A, D\\
+                    \hline
+                    Álgebra I (D) & 14 & -- \\
+                    \hline
+                    Álgebra II (E) & 14 & D \\
+                    \hline
+                    Mecánica Clásica (F) & 16 & A, B \\
+                    \hline 
+                    Mecánica Celeste (G) & 18 & C, E \\
+                    \hline 
+                    Trigonometría Esférica (H) & 12 & D \\
+                    \hline
+                    Geoagrafía (I) & 10 & La primera mtad de F  \\
+                    \hline 
+                    Astronomía I (J) & 16 & H, F, N \\ 
+                    \hline 
+                    Astronomía II (K) & 18 & J, I, G \\   
+                    \hline 
+                    Astronomía III (L) & 20 & K \\  
+                    \hline 
+                    Programación (M) & 10 & -- \\           
+                    \hline
+                    Cálculo Numérico (N) & 10 & M \\
+                    \hline 
+                    Filosofía I (O) & 14 & -- \\
+                    \hline 
+                    Filosofía II (P) & 14 & O \\
+                    \hline                     
+                
+                \end{tabular}   
+            
+            \end{center}
+            \caption{}
+        \end{table}
+        \begin{center}
+            \begin{enumerate}[a)]
+                \item ¿En que tiempo mínimo podría vencer la carrera?
+                \item Con el propósito de eliminar la acumulación excesiva de asignaturas a un mismo 
+                tiempo ¿qué asignaturas permitirán un corrimiento a la propuesta inicial y qué tiempo?,
+                ¿es posible no estudiar más de 4 asignaturas simultáneamente? ¿qué plan de estudios 
+                usted propone?
+                \item De acuerdo a su plan, ¿en qué periodo sería más intenso el estudio?
+            \end{enumerate}
+        \end{center}
+        
+        
+        \pagebreak
+
+%%---------------------------Problema18----------------------------------
+%-----------------------------------------------------------------------
+\section{Problema}
+        El ciudadano X va cada día de su casa al trabajo en bicicleta, como tiene conocimientos
+        de Teoría de Grafos, quiere encontrar el camino más corto, pero para su desgracia ese 
+        camino esta muy controlado por la policía que es muy rigurosa en las leyes de tránsito.
+        Luego de algunas multas el ciudadano llega a la conclusión de que el camino más corto no
+        es el más económico; por eso decidió seleccionar la vía con mayor probabilidad de no ser 
+        interceptado por la policía y para ello, obtuvo las probabilidades para  cada pedazo de
+        trayectoria, según se muestra:
+        \input{graphs/graphProblem18-1.tex}
+        \pagebreak
+
+
+%%---------------------------Problema19----------------------------------
+%-----------------------------------------------------------------------
+\section{Problema}
+        Represente un grafo por el método arco-tarea, el proyecto que conforman las tareas de la tabla 
+        siguiente y determine que tareas no pueden atrasarse sin retrasar el proyecto:
+        \begin{table}[h]
+            \begin{center}
+            
+                \begin{tabular}{|c|c|c|}
+                    \hline
+                    Asignaturas & Tiempo de estudio & Antecedentes \\
+                    \hline
+                    Geometría Analítica (A) & 10 & -- \\
+                    \hline
+                    Análisis I (B) & 16 & --\\
+                    \hline
+                    Análisis II (C) & 16 & B, A, D\\
+                    \hline
+                    Álgebra I (D) & 14 & -- \\
+                    \hline
+                    Álgebra II (E) & 14 & D \\
+                    \hline
+                    Mecánica Clásica (F) & 16 & A, B \\
+                    \hline
+                \end{tabular}   
+            
+            \end{center}
+            \caption{}
+        \end{table}
 \end{document}
 %---------------------------
 
