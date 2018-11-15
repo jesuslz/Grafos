@@ -6,28 +6,28 @@
            
            %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
            
-           \node[state] (1) at (-5, 0) {1};
-           \node[state] (2) at (-2.5, 1.5) {2};
-           \node[state] (4) at (2.5, 1.5) {4};
-           \node[state] (6) at (5, 0) {6};
-           \node[state] (5) at (2.5, -1.5) {5};
-           \node[state] (3) at (-2.5, -1.5) [label = below: $ 7(I) $] {3};
-           \node[state] (7) at (6, -1.5) {7};
+           \node[state] (1) at (-5, 0) [label = left: $(-{,}0)$] {1};
+           \node[state] (2) at (-2.5, 2.5) [label = above: $(1{,}0.2)$] {2};
+           \node[state] (4) at (2.5, 2.5) [label = above left: $(2{,}1.0)$] [label = above right: $(3{,}1.0)$] {4};
+           \node[state] (6) at (5, 0) [label = above: $(4{,}1.35)$] {6};
+           \node[state] (5) at (2.5, -2.5) [label = below: $(4{,}1.4)$] {5};
+           \node[state] (3) at (-2.5, -2.5) [label = below: $(1{,}0.9)$] {3};
+           \node[state] (7) at (6, -1.5) [label = below: $(6{,}1.85)$] {7};
 
            
-           \path (1) edge node[above=0.15] {$0.2$} (2);
+           \path (1)[camino] edge node[above=0.15] {$0.2$} (2);
            \path (1) edge node[above=0.15] {$0.9$} (3);
 
            \path (2) edge node[right=0.15] {$0.6$} (3);
-           \path (2) edge node[above=0.15] {$0.8$} (4);
+           \path (2)[camino] edge node[above=0.15] {$0.8$} (4);
            
            \path (3) edge node[above=0.15] {$0.1$} (4);
            \path (3) edge node[above=0.15] {$0.3$} (5);
 
            \path (4) edge node[right=0.15] {$0.4$} (5);
-           \path (4) edge node[above=0.15] {$0.35$} (6);
+           \path (4)[camino] edge node[above=0.15] {$0.35$} (6);
 
-           \path (6) edge node[right=0.15] {$0.5$} (7);
+           \path (6)[camino] edge node[right=0.15] {$0.5$} (7);
            \path (5) edge node[above=0.15] {$0.25$} (7);
         
    
@@ -35,5 +35,5 @@
            %\path (A) edge [loop left] node[left] {$1/4$} (A);
            
        \end{tikzpicture}
-        \caption{}
+        \caption{La figura muestra uno de los dos posibles caminos más económicos.}
    \end{figure}  

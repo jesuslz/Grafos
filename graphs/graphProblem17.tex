@@ -1,0 +1,49 @@
+\begin{figure}[h]
+
+    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+               state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+               draw,processblue , text=blue , minimum width =1 cm}]
+           
+           %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+           
+           \node[state] (I) at (-5, 0) [label = left: $ (- {,} 0) $] {I};
+           \node[state] (a') at (-4.0, 2.5) [label = above: $ (I {,} 0) $] {a'};
+           \node[state] (alp) at (-2.5, 2.0) [label = above: $ (B {,} 16) $] {$\alpha$};
+           \node[state] (a) at (-1.5, 0.5) [label = above: $ (\alpha {,} 16) $] {a};
+           \node[state] (d') at (-1.5, -1.5) [label = below: $ (I {,} 14) $] {d'};
+           \node[state] (b) at (-3.0, -2.5) [label = above: $ (I {,} 10) $] {b};
+           \node[state] (c) at (-4.0, -3.5) [label = above: $ (I {,} 14) $] {c};
+           \node[state] (b') at (0.5, 2.5) [label = above: $ (\alpha {,} 24) $] {b'};
+           \node[state] (d) at (1.5, -0.5) [label = above: $ (a {,} 32) $] {d};
+           \node[state] (f) at (3.5, -0.5) [label = below: $ (b' {,} 32) $] {f};
+           \node[state] (g) at (5.5, -0.5) [label = above: $ (d {,} 50) $] {g};
+           \node[state] (h) at (7.5, -0.5) [label = above: $ (g {,} 68) $] {h};
+           \node[state] (F) at (6.5, -2.5) [label = below: $ (h {,} 88) $] {F};
+           
+           \path (I) edge [bend right = -15] node[left=0.15] {$A(10)$} (a');
+           \draw[dashed] (a') -- node[below=0.01, pos = 0.20] {$0$} (alp);
+           \path (I) edge [bend right = 15] node[left=0.15] {$B(16)$} (alp);
+           \path (I) edge node[above=0.01, pos = 0.50] {$D(14)$} (d');
+           \path (I) edge [bend right = 15] node[right=0.01, pos = 0.20] {$M(10)$} (b);
+           \path (I) edge [bend right = 15] node[left=0.01, pos = 0.50] {$O(14)$} (c);
+           \draw[dashed] (alp) -- node[below=0.01, pos = 0.20] {$0$} (a);
+           \draw[dashed] (d') -- node[left=0.01, pos = 0.50] {$0$} (a);
+           \path (d') edge [bend right = 15] node[above=0.01, pos = 0.50] {$E(14)$} (d);
+           \path (a) edge [bend right = -15] node[below=0.01, pos = 0.50] {$C(10)$} (d);
+           \path (alp) edge [bend right = -15] node[above=0.01, pos = 0.50] {$F(8)$} (b');
+           \path (b') edge [bend right = -15] node[above=0.20, pos = 0.50] {$F(8)$} (f);
+           \path (d') edge [bend right = 25] node[above=0.05, pos = 0.50] {$H(12)$} (f);
+           \path (b) edge [bend right = 25] node[above=0.05, pos = 0.35] {$N(10)$} (f);
+           \path (c) edge [bend right = 25] node[above=0.05, pos = 0.50] {$P(14)$} (F);
+           \path (f) edge node[above=0.05, pos = 0.50] {$J(16)$} (g);
+           \path (g) edge node[above=0.05, pos = 0.50] {$K(18)$} (h);
+           \path (h) edge [bend right = - 25] node[left=0.05, pos = 0.50] {$L(20)$} (F);
+           \path (b') edge [bend right = - 25] node[above=0.05, pos = 0.50] {$I(10)$} (g);
+           \path (d) edge [bend right =  55] node[below=0.05, pos = 0.50] {$G(18)$} (g);
+           %si queremos un loop
+           %\path (A) edge [loop left] node[left] {$1/4$} (A);
+           
+       \end{tikzpicture}
+        \caption{En cada arco se encuentra el nombre de la materia a cursar con
+            su respectiva duración entre paréntesis.}
+   \end{figure}

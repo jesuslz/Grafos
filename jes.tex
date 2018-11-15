@@ -46,8 +46,8 @@
 %---------------------
 
 %---------------------
-\contact{Un autor, Dpto. de Matem\'aticas, Universidad de \dots}
-{autor@uni.es}{http://www.uni.es/personales/autor.html}
+\contact{FCFM-Ingeniería Física}
+{jesus_lopez_zavala@uadec.edu.mx}{}
 %% SINTAXIS (\'usense tantos de estos como autores haya):
 %\contact{nombre y direcci\'on autor 1}{email autor 1}{p\'agina web autor 1}
 %\contact{nombre y direcci\'on autor 2}{email autor 2}{p\'agina web autor 2}
@@ -237,13 +237,6 @@
             U_4 = \{(\alpha,C), (C,H), (H,\beta)\},
        \end{equation}
 
-       \begin{equation}
-            U_5 = \{(\alpha,C), (C,E), (E,G), (G,\beta)\},
-       \end{equation}
-
-       \begin{equation}
-            U_4 = \{(\alpha,A), (A,E), (E,G), (G,\beta)\}.
-       \end{equation}
     \end{center}
     
 
@@ -326,15 +319,15 @@
     algoritmo de Kruskal para encontrar la cadena con mínima longitud, y así compararla con el 
     resultado anterior. Al hacer ésto veremos que el algoritmo da cómo resultado un árbol 
     donde podría haberse omitido una arista a la hora de darle sentido 
-    a la situación real. Ésta observacion conduce a pensar que todo depende de la situación real que 
-    se quiere resolver, por lo tanto, la longitud no varía. 
+    a la situación real; además hay que considerar que la no orientación permite una ruta con 
+    mayor libertad, afectando así a la longitud entre los vértices $1$ y $6$.
     
  
 
 %%---------------------------Problema8----------------------------------
 %-----------------------------------------------------------------------
 
-\section{}
+\section{Problema}
     En cada una de las siguientes situaciones explique cómo construir el grafo asociado al
     problema a resolver, ésto es, qué tomar como vértices y bajo que ley construir los 
     arcos.
@@ -392,12 +385,12 @@
     sólo si $i$ es vecino de $j$.
 %%---------------------------Problema9----------------------------------
 %-----------------------------------------------------------------------
-\section{Problema}
+
 
 
 %%---------------------------Problema10----------------------------------
 %-----------------------------------------------------------------------
-\section{}
+\section{Problema}
         Un agricultor dispone de un terreno de 5 hectáreasdividido en 4 partes iguales. Se 
         pueden sembrar 4 productos A, B, C, D. Para evitar el empobrecimiento del terreno 
         es necesario rotar cada año el cultivo en cada una de las 4 partes. Al comenzar se 
@@ -569,6 +562,8 @@
         La respuesta es no, porque el grafo asociado a un proyecto no puede tener 
         corcuitos por la naturaleza del mismo.
 
+%%---------------------------Problema14----------------------------------
+%-----------------------------------------------------------------------
 
 %%---------------------------Problema15----------------------------------
 %-----------------------------------------------------------------------
@@ -630,6 +625,17 @@
         Detremine la duración mínima del proyecto cuyo grafo aparece a continuación:
         \input{graphs/graphProblem16-1.tex}
         \pagebreak
+        Observamos que algunos nodos tienen asociado un número. Para poder aplicar el 
+        algoritmo de Ford, convertiremos la marca en un arco y pondremos el valor de cero 
+        a los arcos que no tienen asociado ningùn valor. A continuación se muestra este 
+        procedimiento y las marcas resultantes después de haber aplicado el algoritmo de 
+        Ford:
+        \input{graphs/graphProblem16-2.tex}
+        De esta forma la duración mínima del proyecto es de 17 está determinada por el 
+        camino:
+        \begin{equation}
+            U = \{ (A,C'), (C',C), (C,D), (D,E), (E,F) \}.
+        \end{equation}
 
 
 %%---------------------------Problema17----------------------------------
@@ -695,9 +701,30 @@
                 \item De acuerdo a su plan, ¿en qué periodo sería más intenso el estudio?
             \end{enumerate}
         \end{center}
-        
-        
+        a) El grafo que representa todas las posibles rutas de acuerdo al programa, está representado 
+        en la siguiente figura:
         \pagebreak
+        \input{graphs/graphProblem17.tex}\\
+        
+        Luego de aplicar el algoritmo de Ford observamos que el tiempo mínimo en que puede 
+        vencer la carrera es 88.
+        \\b) Para hacer un análisis prestemos atención al siguiente diagrama de barras:
+        \begin{figure}
+            \centering
+            \includegraphics[width = 0.9\textwidth]{Figure_1}
+            \caption{}
+        \end{figure}
+        \pagebreak
+        Observamos que las materias que pueden ser movidas sin afectar el tiempo crítico 
+        de duración de la carrera, son P y O con una holgura de $h7 = 60 $ semanas. Existen otras 
+        materias que pueden ser removidas pero esto no evitaría una acumulación excesiva.
+        \\Observemos la holgura que existe en los lapsos de tiempo $h_2$ y $h_4$, durante este
+        tiempo es posible no estar estudiando mas de 4 materias simultáneamente.
+        \\El plan que se propone es tomar las materias O y P a partir de la semana 50 para evitar 
+        cualquier carga excesiva de materias. Además es conveniente tomar en cuenta las
+        holguras $h_2$ y $h_4$, ya que estas permitiran no tener un acumulamiento de materias 
+        por lo menos en 4 semanas. Con este plan el periodo más intenso será a partir de la 
+        semana $16$ hasta la $28$.
 
 %%---------------------------Problema18----------------------------------
 %-----------------------------------------------------------------------
@@ -709,9 +736,20 @@
         es el más económico; por eso decidió seleccionar la vía con mayor probabilidad de no ser 
         interceptado por la policía y para ello, obtuvo las probabilidades para  cada pedazo de
         trayectoria, según se muestra:
+        
         \input{graphs/graphProblem18-1.tex}
-        \pagebreak
-
+        
+        Aplicando el algoritmo de Ford obtenemos las siguientes marcas:\\
+        \input{graphs/graphProblem18-2.tex}
+        Como el valor que tiene cada arco es la probabilidad de no ser interceptado, entonces el 
+        camino con mayor probabilidad es aquel que resulta más económico. Para este caso 
+        tenemos dos posibles caminos:
+        \begin{equation}
+            U_1 = \{(1,2), (2,4), (4,6), (6,7)\}
+        \end{equation}
+        \begin{equation}
+            U_2 = \{(1,3), (3,4), (4,6), (6,7) \}
+        \end{equation}
 
 %%---------------------------Problema19----------------------------------
 %-----------------------------------------------------------------------
@@ -723,25 +761,38 @@
             
                 \begin{tabular}{|c|c|c|}
                     \hline
-                    Asignaturas & Tiempo de estudio & Antecedentes \\
+                    Tarea & Duración & Antecedentes \\
                     \hline
-                    Geometría Analítica (A) & 10 & -- \\
+                    I & 10 & -- \\
                     \hline
-                    Análisis I (B) & 16 & --\\
+                    II & 18 & --\\
                     \hline
-                    Análisis II (C) & 16 & B, A, D\\
+                    III & 12 & I y II\\
                     \hline
-                    Álgebra I (D) & 14 & -- \\
+                    IV & 2 & I \\
                     \hline
-                    Álgebra II (E) & 14 & D \\
+                    V & 15 & III y IV \\
                     \hline
-                    Mecánica Clásica (F) & 16 & A, B \\
+                    VI & 20 & IV y III \\
                     \hline
                 \end{tabular}   
             
             \end{center}
             \caption{}
         \end{table}
+        \\Para ello vamos a dibujar el grafo que representa el proyecto, poniendo las 
+        actividades como arcos:
+
+        \input{graphs/graphProblem19.tex}
+        \pagebreak
+        Las tareas que estan en el camino crítico no pueden atrasarse, ya que depende de ellas 
+        la duración total del proyecto.
+        EL camino crítico queda determinado por:
+        \begin{equation}
+            U = \{ (I,2), (2,3), (3,F) \}.
+        \end{equation}
+        \pagebreak
+
 \end{document}
 %---------------------------
 

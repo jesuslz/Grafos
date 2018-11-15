@@ -1,0 +1,44 @@
+\begin{figure}[h]
+
+    \begin{tikzpicture}[-latex, auto, node distance =4 cm and 5cm, on grid , semithick, scale = 1.0,
+               state/.style ={ circle ,top color =white , bottom color = processblue!20 ,
+               draw,processblue , text=blue , minimum width =1 cm}]
+           
+           %\node [estilo del nodo] (nombre del nodo) [posicion relativa]/at (posicion,absoluta) {};
+           
+           \node[state] (A) at (-5, 0) [label = left: $ (- {,} 0) $] {A};
+           \node[state] (B) at (-2.5, 1.5) [label = above: $ (A {,} 8) $] {B};
+           \node[state] (B') at (0, 1.5) [label = above: $ (B {,} 14) $] {B'};
+           \node[state] (C') at (-5, -1.5) [label = left: $ (A {,} 0) $] {C'};
+           \node[state] (D) at (2.5, 1.5) [label = above: $ (C {,} 17) $] {D};
+           \node[state] (F) at (5, 0) [label = left: $ (E {,} 17) $] {F};
+           \node[state] (E) at (2.5, -1.5) [label = below: $ (D {,} 17) $] {E};
+           \node[state] (C) at (-2.5, -1.5) [label = below: $ (C' {,} 7) $] {C};
+           
+           \path (A) edge node[above=0.15] {$8(I)$} (B);
+           \path (A)[camino] edge node[left=0.15] {$0$} (C');
+           
+           \path (B) edge node[above=0.15] {$6(I)$} (B');
+           \path (B') edge node[above=0.15] {$0$} (D);
+           
+
+           \path (C')[camino] edge node[below = 0.15] {$7(I)$} (C);
+           \path (C)[camino] edge node[above = 0.15] {$10$} (D);
+           \path (C) edge node[below = 0.15] {$5(II)$} (E);
+           
+   
+           \path (D)[camino] edge node[left=0.15] {$0$} (E);
+           \path (D) edge node[above=0.15] {$0$} (F);
+   
+           \path (E)[camino] edge node[above=0.15] {$0$} (F);
+   
+   
+   
+   
+           %si queremos un loop
+           %\path (A) edge [loop left] node[left] {$1/4$} (A);
+           
+       \end{tikzpicture}
+        \caption{}
+   \end{figure}  
+   
